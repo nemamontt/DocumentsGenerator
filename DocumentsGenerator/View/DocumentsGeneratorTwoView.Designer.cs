@@ -28,54 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocumentsGeneratorTwoView));
-            TableLayoutPanel = new TableLayoutPanel();
+            MainTableLayoutPanel = new TableLayoutPanel();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             GoBackButton = new Button();
             ReadeButton = new Button();
-            FioOtherAuthorTextBox = new TextBox();
-            DateOfBirthOtherAuthorsTextBox = new TextBox();
-            LocationOtherAuthorTextBox = new TextBox();
-            CreativeInputOtherAuthorTextBox = new TextBox();
+            FioAuthorsTextBox = new TextBox();
+            DateOfBirthAuthorsTextBox = new TextBox();
+            LocationAuthorsTextBox = new TextBox();
+            CreativeInputAuthorsTextBox = new TextBox();
             SeparatorButton = new Button();
+            PassportDetailsLabel = new Label();
+            PassportDetailsTextBox = new TextBox();
             label1 = new Label();
-            TableLayoutPanel.SuspendLayout();
+            FocusTimer = new System.Windows.Forms.Timer(components);
+            DetectPressTimer = new System.Windows.Forms.Timer(components);
+            MainTableLayoutPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // TableLayoutPanel
+            // MainTableLayoutPanel
             // 
-            TableLayoutPanel.ColumnCount = 2;
-            TableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
-            TableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
-            TableLayoutPanel.Controls.Add(label2, 0, 1);
-            TableLayoutPanel.Controls.Add(label3, 0, 2);
-            TableLayoutPanel.Controls.Add(label4, 0, 3);
-            TableLayoutPanel.Controls.Add(GoBackButton, 0, 5);
-            TableLayoutPanel.Controls.Add(ReadeButton, 1, 5);
-            TableLayoutPanel.Controls.Add(FioOtherAuthorTextBox, 1, 0);
-            TableLayoutPanel.Controls.Add(DateOfBirthOtherAuthorsTextBox, 1, 1);
-            TableLayoutPanel.Controls.Add(LocationOtherAuthorTextBox, 1, 2);
-            TableLayoutPanel.Controls.Add(CreativeInputOtherAuthorTextBox, 1, 3);
-            TableLayoutPanel.Controls.Add(SeparatorButton, 1, 4);
-            TableLayoutPanel.Dock = DockStyle.Fill;
-            TableLayoutPanel.Location = new Point(0, 0);
-            TableLayoutPanel.Name = "TableLayoutPanel";
-            TableLayoutPanel.RowCount = 6;
-            TableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 21F));
-            TableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 21F));
-            TableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 21F));
-            TableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 21F));
-            TableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            TableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            TableLayoutPanel.Size = new Size(625, 527);
-            TableLayoutPanel.TabIndex = 0;
+            MainTableLayoutPanel.ColumnCount = 2;
+            MainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            MainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            MainTableLayoutPanel.Controls.Add(label2, 0, 1);
+            MainTableLayoutPanel.Controls.Add(label3, 0, 2);
+            MainTableLayoutPanel.Controls.Add(label4, 0, 4);
+            MainTableLayoutPanel.Controls.Add(GoBackButton, 0, 6);
+            MainTableLayoutPanel.Controls.Add(ReadeButton, 1, 6);
+            MainTableLayoutPanel.Controls.Add(FioAuthorsTextBox, 1, 0);
+            MainTableLayoutPanel.Controls.Add(DateOfBirthAuthorsTextBox, 1, 1);
+            MainTableLayoutPanel.Controls.Add(LocationAuthorsTextBox, 1, 2);
+            MainTableLayoutPanel.Controls.Add(CreativeInputAuthorsTextBox, 1, 4);
+            MainTableLayoutPanel.Controls.Add(SeparatorButton, 1, 5);
+            MainTableLayoutPanel.Controls.Add(PassportDetailsLabel, 0, 3);
+            MainTableLayoutPanel.Controls.Add(PassportDetailsTextBox, 1, 3);
+            MainTableLayoutPanel.Dock = DockStyle.Fill;
+            MainTableLayoutPanel.Location = new Point(0, 0);
+            MainTableLayoutPanel.Name = "MainTableLayoutPanel";
+            MainTableLayoutPanel.RowCount = 7;
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            MainTableLayoutPanel.Size = new Size(625, 527);
+            MainTableLayoutPanel.TabIndex = 0;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 110);
+            label2.Location = new Point(3, 89);
             label2.Name = "label2";
             label2.Size = new Size(99, 15);
             label2.TabIndex = 2;
@@ -84,7 +92,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(3, 220);
+            label3.Location = new Point(3, 178);
             label3.Name = "label3";
             label3.Size = new Size(117, 15);
             label3.TabIndex = 3;
@@ -93,7 +101,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(3, 330);
+            label4.Location = new Point(3, 356);
             label4.Name = "label4";
             label4.Size = new Size(117, 15);
             label4.TabIndex = 4;
@@ -103,10 +111,10 @@
             // 
             GoBackButton.Cursor = Cursors.Hand;
             GoBackButton.Dock = DockStyle.Fill;
-            GoBackButton.Location = new Point(3, 485);
+            GoBackButton.Location = new Point(3, 488);
             GoBackButton.Name = "GoBackButton";
-            GoBackButton.Size = new Size(181, 39);
-            GoBackButton.TabIndex = 1;
+            GoBackButton.Size = new Size(181, 36);
+            GoBackButton.TabIndex = 8;
             GoBackButton.Tag = "6";
             GoBackButton.Text = "Назад";
             GoBackButton.UseVisualStyleBackColor = true;
@@ -115,74 +123,116 @@
             // 
             ReadeButton.Cursor = Cursors.Hand;
             ReadeButton.Dock = DockStyle.Fill;
-            ReadeButton.Location = new Point(190, 485);
+            ReadeButton.Location = new Point(190, 488);
             ReadeButton.Name = "ReadeButton";
-            ReadeButton.Size = new Size(432, 39);
-            ReadeButton.TabIndex = 2;
+            ReadeButton.Size = new Size(432, 36);
+            ReadeButton.TabIndex = 7;
             ReadeButton.Tag = "5";
             ReadeButton.Text = "Готово";
             ReadeButton.UseVisualStyleBackColor = true;
             // 
-            // FioOtherAuthorTextBox
+            // FioAuthorsTextBox
             // 
-            FioOtherAuthorTextBox.Dock = DockStyle.Fill;
-            FioOtherAuthorTextBox.Location = new Point(190, 3);
-            FioOtherAuthorTextBox.Multiline = true;
-            FioOtherAuthorTextBox.Name = "FioOtherAuthorTextBox";
-            FioOtherAuthorTextBox.Size = new Size(432, 104);
-            FioOtherAuthorTextBox.TabIndex = 18;
-            FioOtherAuthorTextBox.Tag = "1";
+            FioAuthorsTextBox.AccessibleDescription = "ФИО автора(ов)";
+            FioAuthorsTextBox.AccessibleName = "";
+            FioAuthorsTextBox.Dock = DockStyle.Fill;
+            FioAuthorsTextBox.Location = new Point(190, 3);
+            FioAuthorsTextBox.Multiline = true;
+            FioAuthorsTextBox.Name = "FioAuthorsTextBox";
+            FioAuthorsTextBox.PlaceholderText = "Иванов Иван Иванович|Петров Петр Петрович";
+            FioAuthorsTextBox.Size = new Size(432, 83);
+            FioAuthorsTextBox.TabIndex = 1;
+            FioAuthorsTextBox.Tag = "1";
             // 
-            // DateOfBirthOtherAuthorsTextBox
+            // DateOfBirthAuthorsTextBox
             // 
-            DateOfBirthOtherAuthorsTextBox.Dock = DockStyle.Fill;
-            DateOfBirthOtherAuthorsTextBox.Location = new Point(190, 113);
-            DateOfBirthOtherAuthorsTextBox.Multiline = true;
-            DateOfBirthOtherAuthorsTextBox.Name = "DateOfBirthOtherAuthorsTextBox";
-            DateOfBirthOtherAuthorsTextBox.Size = new Size(432, 104);
-            DateOfBirthOtherAuthorsTextBox.TabIndex = 19;
-            DateOfBirthOtherAuthorsTextBox.Tag = "2";
+            DateOfBirthAuthorsTextBox.AccessibleDescription = "Дата рождения";
+            DateOfBirthAuthorsTextBox.AccessibleName = "";
+            DateOfBirthAuthorsTextBox.Dock = DockStyle.Fill;
+            DateOfBirthAuthorsTextBox.Location = new Point(190, 92);
+            DateOfBirthAuthorsTextBox.Multiline = true;
+            DateOfBirthAuthorsTextBox.Name = "DateOfBirthAuthorsTextBox";
+            DateOfBirthAuthorsTextBox.PlaceholderText = "01.01.2001|02.02.2002";
+            DateOfBirthAuthorsTextBox.Size = new Size(432, 83);
+            DateOfBirthAuthorsTextBox.TabIndex = 2;
+            DateOfBirthAuthorsTextBox.Tag = "2";
             // 
-            // LocationOtherAuthorTextBox
+            // LocationAuthorsTextBox
             // 
-            LocationOtherAuthorTextBox.Dock = DockStyle.Fill;
-            LocationOtherAuthorTextBox.Location = new Point(190, 223);
-            LocationOtherAuthorTextBox.Multiline = true;
-            LocationOtherAuthorTextBox.Name = "LocationOtherAuthorTextBox";
-            LocationOtherAuthorTextBox.Size = new Size(432, 104);
-            LocationOtherAuthorTextBox.TabIndex = 20;
-            LocationOtherAuthorTextBox.Tag = "3";
+            LocationAuthorsTextBox.AccessibleDescription = "Место жительства";
+            LocationAuthorsTextBox.AccessibleName = "";
+            LocationAuthorsTextBox.Dock = DockStyle.Fill;
+            LocationAuthorsTextBox.Location = new Point(190, 181);
+            LocationAuthorsTextBox.Multiline = true;
+            LocationAuthorsTextBox.Name = "LocationAuthorsTextBox";
+            LocationAuthorsTextBox.PlaceholderText = "г. Краснодар, ул. Пушкина, д. 10, кв. 267, 350912, Российская Федерация";
+            LocationAuthorsTextBox.Size = new Size(432, 83);
+            LocationAuthorsTextBox.TabIndex = 3;
+            LocationAuthorsTextBox.Tag = "3";
             // 
-            // CreativeInputOtherAuthorTextBox
+            // CreativeInputAuthorsTextBox
             // 
-            CreativeInputOtherAuthorTextBox.Dock = DockStyle.Fill;
-            CreativeInputOtherAuthorTextBox.Location = new Point(190, 333);
-            CreativeInputOtherAuthorTextBox.Multiline = true;
-            CreativeInputOtherAuthorTextBox.Name = "CreativeInputOtherAuthorTextBox";
-            CreativeInputOtherAuthorTextBox.Size = new Size(432, 104);
-            CreativeInputOtherAuthorTextBox.TabIndex = 21;
-            CreativeInputOtherAuthorTextBox.Tag = "4";
+            CreativeInputAuthorsTextBox.AccessibleDescription = "Творческий вклад";
+            CreativeInputAuthorsTextBox.AccessibleName = "";
+            CreativeInputAuthorsTextBox.Dock = DockStyle.Fill;
+            CreativeInputAuthorsTextBox.Location = new Point(190, 359);
+            CreativeInputAuthorsTextBox.Multiline = true;
+            CreativeInputAuthorsTextBox.Name = "CreativeInputAuthorsTextBox";
+            CreativeInputAuthorsTextBox.PlaceholderText = "Написание программного кода|Откладка программы";
+            CreativeInputAuthorsTextBox.Size = new Size(432, 83);
+            CreativeInputAuthorsTextBox.TabIndex = 5;
+            CreativeInputAuthorsTextBox.Tag = "5";
             // 
             // SeparatorButton
             // 
             SeparatorButton.Cursor = Cursors.Hand;
             SeparatorButton.Dock = DockStyle.Fill;
-            SeparatorButton.Location = new Point(190, 443);
+            SeparatorButton.Location = new Point(190, 448);
             SeparatorButton.Name = "SeparatorButton";
-            SeparatorButton.Size = new Size(432, 36);
-            SeparatorButton.TabIndex = 22;
+            SeparatorButton.Size = new Size(432, 34);
+            SeparatorButton.TabIndex = 6;
             SeparatorButton.Tag = "7";
             SeparatorButton.Text = "Добавить разделитель '|'";
             SeparatorButton.UseVisualStyleBackColor = true;
+            // 
+            // PassportDetailsLabel
+            // 
+            PassportDetailsLabel.AutoSize = true;
+            PassportDetailsLabel.Location = new Point(3, 267);
+            PassportDetailsLabel.Name = "PassportDetailsLabel";
+            PassportDetailsLabel.Size = new Size(128, 30);
+            PassportDetailsLabel.TabIndex = 8;
+            PassportDetailsLabel.Text = "Паспортные данные авторa(ов):";
+            // 
+            // PassportDetailsTextBox
+            // 
+            PassportDetailsTextBox.AccessibleDescription = "Паспортные данные автора(ов)";
+            PassportDetailsTextBox.Dock = DockStyle.Fill;
+            PassportDetailsTextBox.Location = new Point(190, 270);
+            PassportDetailsTextBox.Multiline = true;
+            PassportDetailsTextBox.Name = "PassportDetailsTextBox";
+            PassportDetailsTextBox.Size = new Size(432, 83);
+            PassportDetailsTextBox.TabIndex = 4;
+            PassportDetailsTextBox.Tag = "4";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(79, 15);
+            label1.Size = new Size(101, 15);
             label1.TabIndex = 1;
-            label1.Text = "ФИО автора:";
+            label1.Text = "ФИО автора(ов):";
+            // 
+            // FocusTimer
+            // 
+            FocusTimer.Enabled = true;
+            FocusTimer.Interval = 1;
+            // 
+            // DetectPressTimer
+            // 
+            DetectPressTimer.Enabled = true;
+            DetectPressTimer.Interval = 1;
             // 
             // DocumentsGeneratorTwoView
             // 
@@ -190,7 +240,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(625, 527);
             Controls.Add(label1);
-            Controls.Add(TableLayoutPanel);
+            Controls.Add(MainTableLayoutPanel);
             Cursor = Cursors.IBeam;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -198,25 +248,29 @@
             MinimumSize = new Size(641, 566);
             Name = "DocumentsGeneratorTwoView";
             StartPosition = FormStartPosition.CenterScreen;
-            TableLayoutPanel.ResumeLayout(false);
-            TableLayoutPanel.PerformLayout();
+            MainTableLayoutPanel.ResumeLayout(false);
+            MainTableLayoutPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TableLayoutPanel TableLayoutPanel;
+        private TableLayoutPanel MainTableLayoutPanel;
         private Button GoBackButton;
         private Button ReadeButton;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label1;
-        private TextBox FioOtherAuthorTextBox;
-        private TextBox DateOfBirthOtherAuthorsTextBox;
-        private TextBox LocationOtherAuthorTextBox;
-        private TextBox CreativeInputOtherAuthorTextBox;
+        private TextBox DateOfBirthAuthorsTextBox;
+        private TextBox LocationAuthorsTextBox;
+        private TextBox CreativeInputAuthorsTextBox;
         private Button SeparatorButton;
+        private TextBox FioAuthorsTextBox;
+        public System.Windows.Forms.Timer FocusTimer;
+        private Label PassportDetailsLabel;
+        private TextBox PassportDetailsTextBox;
+        private System.Windows.Forms.Timer DetectPressTimer;
     }
 }

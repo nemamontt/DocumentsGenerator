@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocumentsGeneratorThreeView));
-            tableLayoutPanel = new TableLayoutPanel();
+            MainTableLayoutPanel = new TableLayoutPanel();
             label1 = new Label();
             label5 = new Label();
             label4 = new Label();
@@ -38,42 +38,45 @@
             GoBackButton = new Button();
             ReadeButton = new Button();
             ProgramAnnotationTextBox = new TextBox();
-            TypeOfСomputerTextBox = new TextBox();
-            ProgramLanguageTextBox = new TextBox();
+            ProgramLanguageComboBox = new ComboBox();
+            OperatingSystemComboBox = new ComboBox();
+            TypeOfСomputerComboBox = new ComboBox();
+            NotMainTableLayoutPanel = new TableLayoutPanel();
             ProgramSizeTextBox = new TextBox();
-            OperatingSystemTextBox = new TextBox();
-            tableLayoutPanel.SuspendLayout();
+            ProgramSizeComboBox = new ComboBox();
+            MainTableLayoutPanel.SuspendLayout();
+            NotMainTableLayoutPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // tableLayoutPanel
+            // MainTableLayoutPanel
             // 
-            tableLayoutPanel.ColumnCount = 2;
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
-            tableLayoutPanel.Controls.Add(label1, 0, 0);
-            tableLayoutPanel.Controls.Add(label5, 0, 4);
-            tableLayoutPanel.Controls.Add(label4, 0, 3);
-            tableLayoutPanel.Controls.Add(label3, 0, 2);
-            tableLayoutPanel.Controls.Add(label2, 0, 1);
-            tableLayoutPanel.Controls.Add(GoBackButton, 0, 5);
-            tableLayoutPanel.Controls.Add(ReadeButton, 1, 5);
-            tableLayoutPanel.Controls.Add(ProgramAnnotationTextBox, 1, 0);
-            tableLayoutPanel.Controls.Add(TypeOfСomputerTextBox, 1, 1);
-            tableLayoutPanel.Controls.Add(ProgramLanguageTextBox, 1, 2);
-            tableLayoutPanel.Controls.Add(ProgramSizeTextBox, 1, 3);
-            tableLayoutPanel.Controls.Add(OperatingSystemTextBox, 1, 4);
-            tableLayoutPanel.Dock = DockStyle.Fill;
-            tableLayoutPanel.Location = new Point(0, 0);
-            tableLayoutPanel.Name = "tableLayoutPanel";
-            tableLayoutPanel.RowCount = 6;
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel.Size = new Size(800, 461);
-            tableLayoutPanel.TabIndex = 0;
+            MainTableLayoutPanel.ColumnCount = 2;
+            MainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            MainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            MainTableLayoutPanel.Controls.Add(label1, 0, 0);
+            MainTableLayoutPanel.Controls.Add(label5, 0, 4);
+            MainTableLayoutPanel.Controls.Add(label4, 0, 3);
+            MainTableLayoutPanel.Controls.Add(label3, 0, 2);
+            MainTableLayoutPanel.Controls.Add(label2, 0, 1);
+            MainTableLayoutPanel.Controls.Add(GoBackButton, 0, 5);
+            MainTableLayoutPanel.Controls.Add(ReadeButton, 1, 5);
+            MainTableLayoutPanel.Controls.Add(ProgramAnnotationTextBox, 1, 0);
+            MainTableLayoutPanel.Controls.Add(ProgramLanguageComboBox, 1, 2);
+            MainTableLayoutPanel.Controls.Add(OperatingSystemComboBox, 1, 4);
+            MainTableLayoutPanel.Controls.Add(TypeOfСomputerComboBox, 1, 1);
+            MainTableLayoutPanel.Controls.Add(NotMainTableLayoutPanel, 1, 3);
+            MainTableLayoutPanel.Dock = DockStyle.Fill;
+            MainTableLayoutPanel.Location = new Point(0, 0);
+            MainTableLayoutPanel.Name = "MainTableLayoutPanel";
+            MainTableLayoutPanel.RowCount = 6;
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 83.33334F));
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle());
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle());
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle());
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle());
+            MainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 16.66666F));
+            MainTableLayoutPanel.Size = new Size(800, 450);
+            MainTableLayoutPanel.TabIndex = 0;
             // 
             // label1
             // 
@@ -87,7 +90,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(3, 368);
+            label5.Location = new Point(3, 366);
             label5.Name = "label5";
             label5.Size = new Size(230, 15);
             label5.TabIndex = 4;
@@ -96,7 +99,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(3, 322);
+            label4.Location = new Point(3, 329);
             label4.Name = "label4";
             label4.Size = new Size(120, 15);
             label4.TabIndex = 3;
@@ -105,7 +108,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(3, 276);
+            label3.Location = new Point(3, 299);
             label3.Name = "label3";
             label3.Size = new Size(226, 30);
             label3.TabIndex = 2;
@@ -114,7 +117,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 230);
+            label2.Location = new Point(3, 270);
             label2.Name = "label2";
             label2.Size = new Size(60, 15);
             label2.TabIndex = 1;
@@ -124,9 +127,9 @@
             // 
             GoBackButton.Cursor = Cursors.Hand;
             GoBackButton.Dock = DockStyle.Fill;
-            GoBackButton.Location = new Point(3, 417);
+            GoBackButton.Location = new Point(3, 398);
             GoBackButton.Name = "GoBackButton";
-            GoBackButton.Size = new Size(234, 41);
+            GoBackButton.Size = new Size(234, 49);
             GoBackButton.TabIndex = 7;
             GoBackButton.Text = "Назад";
             GoBackButton.UseVisualStyleBackColor = true;
@@ -135,82 +138,115 @@
             // 
             ReadeButton.Cursor = Cursors.Hand;
             ReadeButton.Dock = DockStyle.Fill;
-            ReadeButton.Location = new Point(243, 417);
+            ReadeButton.Location = new Point(243, 398);
             ReadeButton.Name = "ReadeButton";
-            ReadeButton.Size = new Size(554, 41);
+            ReadeButton.Size = new Size(554, 49);
             ReadeButton.TabIndex = 6;
-            ReadeButton.Text = "Готово";
+            ReadeButton.Text = "Завершить";
             ReadeButton.UseVisualStyleBackColor = true;
             // 
             // ProgramAnnotationTextBox
             // 
+            ProgramAnnotationTextBox.AccessibleDescription = "Аннотация к программе";
             ProgramAnnotationTextBox.Cursor = Cursors.IBeam;
             ProgramAnnotationTextBox.Dock = DockStyle.Fill;
             ProgramAnnotationTextBox.Location = new Point(243, 3);
             ProgramAnnotationTextBox.Multiline = true;
             ProgramAnnotationTextBox.Name = "ProgramAnnotationTextBox";
-            ProgramAnnotationTextBox.Size = new Size(554, 224);
+            ProgramAnnotationTextBox.PlaceholderText = "Образец заполнения этого поля находиться в инструкции, ОБЯЗАТЕЛЬНО ознакомьтесь";
+            ProgramAnnotationTextBox.Size = new Size(554, 264);
             ProgramAnnotationTextBox.TabIndex = 1;
             ProgramAnnotationTextBox.Tag = "1";
             // 
-            // TypeOfСomputerTextBox
+            // ProgramLanguageComboBox
             // 
-            TypeOfСomputerTextBox.Cursor = Cursors.IBeam;
-            TypeOfСomputerTextBox.Dock = DockStyle.Fill;
-            TypeOfСomputerTextBox.Location = new Point(243, 233);
-            TypeOfСomputerTextBox.Multiline = true;
-            TypeOfСomputerTextBox.Name = "TypeOfСomputerTextBox";
-            TypeOfСomputerTextBox.Size = new Size(554, 40);
-            TypeOfСomputerTextBox.TabIndex = 2;
+            ProgramLanguageComboBox.AccessibleDescription = "Язык программиования на котором написанна программа";
+            ProgramLanguageComboBox.Cursor = Cursors.IBeam;
+            ProgramLanguageComboBox.FormattingEnabled = true;
+            ProgramLanguageComboBox.Items.AddRange(new object[] { "C#", "C++", "Python", "Java", "C", "JavaScript", "Pascal", "Go", "Swift", "Matlab", "Arduino" });
+            ProgramLanguageComboBox.Location = new Point(243, 302);
+            ProgramLanguageComboBox.Name = "ProgramLanguageComboBox";
+            ProgramLanguageComboBox.Size = new Size(276, 23);
+            ProgramLanguageComboBox.TabIndex = 3;
             // 
-            // ProgramLanguageTextBox
+            // OperatingSystemComboBox
             // 
-            ProgramLanguageTextBox.Cursor = Cursors.IBeam;
-            ProgramLanguageTextBox.Dock = DockStyle.Fill;
-            ProgramLanguageTextBox.Location = new Point(243, 279);
-            ProgramLanguageTextBox.Multiline = true;
-            ProgramLanguageTextBox.Name = "ProgramLanguageTextBox";
-            ProgramLanguageTextBox.Size = new Size(554, 40);
-            ProgramLanguageTextBox.TabIndex = 3;
+            OperatingSystemComboBox.AccessibleDescription = "ОС для которой написанна программа";
+            OperatingSystemComboBox.Cursor = Cursors.IBeam;
+            OperatingSystemComboBox.FormattingEnabled = true;
+            OperatingSystemComboBox.Items.AddRange(new object[] { "Windows ХР и выше", "Windows 7 и выше", "Windows 8 и выше", "Windows 10 и выше", "macOS 11 и выше", "macOS 12 и выше", "macOS 13 и выше", "macOS 14 и выше", "Astra Linux Special Edition 1.6 и выше", "Astra Linux Common Edition 2.12 и выше" });
+            OperatingSystemComboBox.Location = new Point(243, 369);
+            OperatingSystemComboBox.Name = "OperatingSystemComboBox";
+            OperatingSystemComboBox.Size = new Size(276, 23);
+            OperatingSystemComboBox.TabIndex = 5;
+            // 
+            // TypeOfСomputerComboBox
+            // 
+            TypeOfСomputerComboBox.AccessibleDescription = "Тип ЭВМ";
+            TypeOfСomputerComboBox.Cursor = Cursors.IBeam;
+            TypeOfСomputerComboBox.FormattingEnabled = true;
+            TypeOfСomputerComboBox.Items.AddRange(new object[] { "IBM на базе процессора Intel Pentium IV и выше" });
+            TypeOfСomputerComboBox.Location = new Point(243, 273);
+            TypeOfСomputerComboBox.Name = "TypeOfСomputerComboBox";
+            TypeOfСomputerComboBox.Size = new Size(306, 23);
+            TypeOfСomputerComboBox.TabIndex = 2;
+            // 
+            // NotMainTableLayoutPanel
+            // 
+            NotMainTableLayoutPanel.ColumnCount = 2;
+            NotMainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle());
+            NotMainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle());
+            NotMainTableLayoutPanel.Controls.Add(ProgramSizeTextBox, 0, 0);
+            NotMainTableLayoutPanel.Controls.Add(ProgramSizeComboBox, 1, 0);
+            NotMainTableLayoutPanel.Location = new Point(243, 332);
+            NotMainTableLayoutPanel.Name = "NotMainTableLayoutPanel";
+            NotMainTableLayoutPanel.RowCount = 1;
+            NotMainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            NotMainTableLayoutPanel.Size = new Size(167, 31);
+            NotMainTableLayoutPanel.TabIndex = 4;
             // 
             // ProgramSizeTextBox
             // 
+            ProgramSizeTextBox.AccessibleDescription = "Объем программы";
             ProgramSizeTextBox.Cursor = Cursors.IBeam;
-            ProgramSizeTextBox.Dock = DockStyle.Fill;
-            ProgramSizeTextBox.Location = new Point(243, 325);
-            ProgramSizeTextBox.Multiline = true;
+            ProgramSizeTextBox.Location = new Point(3, 3);
+            ProgramSizeTextBox.MaxLength = 4;
             ProgramSizeTextBox.Name = "ProgramSizeTextBox";
-            ProgramSizeTextBox.Size = new Size(554, 40);
-            ProgramSizeTextBox.TabIndex = 4;
+            ProgramSizeTextBox.PlaceholderText = "15,5";
+            ProgramSizeTextBox.Size = new Size(100, 23);
+            ProgramSizeTextBox.TabIndex = 1;
             // 
-            // OperatingSystemTextBox
+            // ProgramSizeComboBox
             // 
-            OperatingSystemTextBox.Cursor = Cursors.IBeam;
-            OperatingSystemTextBox.Dock = DockStyle.Fill;
-            OperatingSystemTextBox.Location = new Point(243, 371);
-            OperatingSystemTextBox.Multiline = true;
-            OperatingSystemTextBox.Name = "OperatingSystemTextBox";
-            OperatingSystemTextBox.Size = new Size(554, 40);
-            OperatingSystemTextBox.TabIndex = 5;
+            ProgramSizeComboBox.Cursor = Cursors.Hand;
+            ProgramSizeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ProgramSizeComboBox.FormattingEnabled = true;
+            ProgramSizeComboBox.Items.AddRange(new object[] { "КБ", "МБ", "ГБ" });
+            ProgramSizeComboBox.Location = new Point(109, 3);
+            ProgramSizeComboBox.Name = "ProgramSizeComboBox";
+            ProgramSizeComboBox.Size = new Size(54, 23);
+            ProgramSizeComboBox.TabIndex = 2;
             // 
             // DocumentsGeneratorThreeView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 461);
-            Controls.Add(tableLayoutPanel);
+            ClientSize = new Size(800, 450);
+            Controls.Add(MainTableLayoutPanel);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "DocumentsGeneratorThreeView";
             StartPosition = FormStartPosition.CenterScreen;
-            tableLayoutPanel.ResumeLayout(false);
-            tableLayoutPanel.PerformLayout();
+            MainTableLayoutPanel.ResumeLayout(false);
+            MainTableLayoutPanel.PerformLayout();
+            NotMainTableLayoutPanel.ResumeLayout(false);
+            NotMainTableLayoutPanel.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TableLayoutPanel tableLayoutPanel;
+        private TableLayoutPanel MainTableLayoutPanel;
         private Label label1;
         private Label label5;
         private Label label4;
@@ -219,9 +255,11 @@
         private Button GoBackButton;
         private Button ReadeButton;
         private TextBox ProgramAnnotationTextBox;
-        private TextBox TypeOfСomputerTextBox;
-        private TextBox ProgramLanguageTextBox;
+        private ComboBox ProgramLanguageComboBox;
+        private ComboBox OperatingSystemComboBox;
+        private ComboBox TypeOfСomputerComboBox;
+        private TableLayoutPanel NotMainTableLayoutPanel;
         private TextBox ProgramSizeTextBox;
-        private TextBox OperatingSystemTextBox;
+        private ComboBox ProgramSizeComboBox;
     }
 }

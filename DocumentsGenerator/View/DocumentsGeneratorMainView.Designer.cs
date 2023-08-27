@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocumentsGeneratorMainView));
-            panel1 = new Panel();
+            Panel = new Panel();
             CreatDocumentButton = new Button();
             button3 = new Button();
-            button2 = new Button();
-            panel1.SuspendLayout();
+            DownloadPackageButton = new Button();
+            Panel.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // Panel
             // 
-            panel1.Controls.Add(CreatDocumentButton);
-            panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(234, 181);
-            panel1.TabIndex = 0;
+            Panel.Controls.Add(CreatDocumentButton);
+            Panel.Controls.Add(button3);
+            Panel.Controls.Add(DownloadPackageButton);
+            Panel.Dock = DockStyle.Fill;
+            Panel.Location = new Point(0, 0);
+            Panel.Name = "Panel";
+            Panel.Size = new Size(234, 181);
+            Panel.TabIndex = 0;
             // 
             // CreatDocumentButton
             // 
@@ -71,38 +71,38 @@
             button3.Text = "О программе";
             button3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // DownloadPackageButton
             // 
-            button2.Cursor = Cursors.Hand;
-            button2.Dock = DockStyle.Fill;
-            button2.FlatStyle = FlatStyle.System;
-            button2.Location = new Point(0, 0);
-            button2.Name = "button2";
-            button2.Size = new Size(234, 181);
-            button2.TabIndex = 2;
-            button2.Text = "Загрузить пакет";
-            button2.UseVisualStyleBackColor = true;
+            DownloadPackageButton.Cursor = Cursors.Hand;
+            DownloadPackageButton.Dock = DockStyle.Fill;
+            DownloadPackageButton.FlatStyle = FlatStyle.System;
+            DownloadPackageButton.Location = new Point(0, 0);
+            DownloadPackageButton.Name = "DownloadPackageButton";
+            DownloadPackageButton.Size = new Size(234, 181);
+            DownloadPackageButton.TabIndex = 2;
+            DownloadPackageButton.Text = "Загрузить пакет";
+            DownloadPackageButton.UseVisualStyleBackColor = true;
             // 
             // DocumentsGeneratorMainView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(234, 181);
-            Controls.Add(panel1);
+            Controls.Add(Panel);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimumSize = new Size(250, 220);
             Name = "DocumentsGeneratorMainView";
             StartPosition = FormStartPosition.CenterScreen;
-            panel1.ResumeLayout(false);
+            Panel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
+        private Panel Panel;
         private Button CreatDocumentButton;
-        private Button button2;
+        private Button DownloadPackageButton;
         private Button button3;
     }
 }
