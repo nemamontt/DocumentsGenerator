@@ -135,12 +135,11 @@
             // 
             FioAuthorsTextBox.AccessibleDescription = "ФИО автора(ов)";
             FioAuthorsTextBox.AccessibleName = "";
-            FioAuthorsTextBox.Dock = DockStyle.Fill;
             FioAuthorsTextBox.Location = new Point(190, 3);
             FioAuthorsTextBox.Multiline = true;
             FioAuthorsTextBox.Name = "FioAuthorsTextBox";
             FioAuthorsTextBox.PlaceholderText = "Иванов Иван Иванович|Петров Петр Петрович";
-            FioAuthorsTextBox.Size = new Size(432, 83);
+            FioAuthorsTextBox.Size = new Size(411, 83);
             FioAuthorsTextBox.TabIndex = 1;
             FioAuthorsTextBox.Tag = "1";
             // 
@@ -148,12 +147,11 @@
             // 
             DateOfBirthAuthorsTextBox.AccessibleDescription = "Дата рождения";
             DateOfBirthAuthorsTextBox.AccessibleName = "";
-            DateOfBirthAuthorsTextBox.Dock = DockStyle.Fill;
             DateOfBirthAuthorsTextBox.Location = new Point(190, 92);
             DateOfBirthAuthorsTextBox.Multiline = true;
             DateOfBirthAuthorsTextBox.Name = "DateOfBirthAuthorsTextBox";
             DateOfBirthAuthorsTextBox.PlaceholderText = "01.01.2001|02.02.2002";
-            DateOfBirthAuthorsTextBox.Size = new Size(432, 83);
+            DateOfBirthAuthorsTextBox.Size = new Size(411, 83);
             DateOfBirthAuthorsTextBox.TabIndex = 2;
             DateOfBirthAuthorsTextBox.Tag = "2";
             // 
@@ -161,12 +159,11 @@
             // 
             LocationAuthorsTextBox.AccessibleDescription = "Место жительства";
             LocationAuthorsTextBox.AccessibleName = "";
-            LocationAuthorsTextBox.Dock = DockStyle.Fill;
             LocationAuthorsTextBox.Location = new Point(190, 181);
             LocationAuthorsTextBox.Multiline = true;
             LocationAuthorsTextBox.Name = "LocationAuthorsTextBox";
             LocationAuthorsTextBox.PlaceholderText = "г. Краснодар, ул. Пушкина, д. 10, кв. 267, 350912, Российская Федерация";
-            LocationAuthorsTextBox.Size = new Size(432, 83);
+            LocationAuthorsTextBox.Size = new Size(411, 83);
             LocationAuthorsTextBox.TabIndex = 3;
             LocationAuthorsTextBox.Tag = "3";
             // 
@@ -174,12 +171,11 @@
             // 
             CreativeInputAuthorsTextBox.AccessibleDescription = "Творческий вклад";
             CreativeInputAuthorsTextBox.AccessibleName = "";
-            CreativeInputAuthorsTextBox.Dock = DockStyle.Fill;
             CreativeInputAuthorsTextBox.Location = new Point(190, 359);
             CreativeInputAuthorsTextBox.Multiline = true;
             CreativeInputAuthorsTextBox.Name = "CreativeInputAuthorsTextBox";
             CreativeInputAuthorsTextBox.PlaceholderText = "Написание программного кода|Откладка программы";
-            CreativeInputAuthorsTextBox.Size = new Size(432, 83);
+            CreativeInputAuthorsTextBox.Size = new Size(411, 83);
             CreativeInputAuthorsTextBox.TabIndex = 5;
             CreativeInputAuthorsTextBox.Tag = "5";
             // 
@@ -207,11 +203,10 @@
             // PassportDetailsTextBox
             // 
             PassportDetailsTextBox.AccessibleDescription = "Паспортные данные автора(ов)";
-            PassportDetailsTextBox.Dock = DockStyle.Fill;
             PassportDetailsTextBox.Location = new Point(190, 270);
             PassportDetailsTextBox.Multiline = true;
             PassportDetailsTextBox.Name = "PassportDetailsTextBox";
-            PassportDetailsTextBox.Size = new Size(432, 83);
+            PassportDetailsTextBox.Size = new Size(411, 83);
             PassportDetailsTextBox.TabIndex = 4;
             PassportDetailsTextBox.Tag = "4";
             // 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocumentsGeneratorOneView));
             MainTableLayoutPanel = new TableLayoutPanel();
             BackButton = new Button();
@@ -54,16 +55,33 @@
             DateOfDiskComboBox = new ComboBox();
             PostSigningSeparatelyComboBox = new ComboBox();
             FIOSigningSeparatelyComboBox = new ComboBox();
+            errorProvider1 = new ErrorProvider(components);
+            errorProvider2 = new ErrorProvider(components);
+            errorProvider3 = new ErrorProvider(components);
+            errorProvider4 = new ErrorProvider(components);
+            errorProvider5 = new ErrorProvider(components);
+            errorProvider6 = new ErrorProvider(components);
+            errorProvider7 = new ErrorProvider(components);
+            errorProvider8 = new ErrorProvider(components);
             MainTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CountAuthorNumericUpDown).BeginInit();
             NotMainTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider8).BeginInit();
             SuspendLayout();
             // 
             // MainTableLayoutPanel
             // 
             MainTableLayoutPanel.ColumnCount = 2;
             MainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.26891F));
-            MainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 67.7310944F));
+            MainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 67.73109F));
+            MainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             MainTableLayoutPanel.Controls.Add(BackButton, 0, 10);
             MainTableLayoutPanel.Controls.Add(label1, 0, 0);
             MainTableLayoutPanel.Controls.Add(PONameTextBox, 1, 0);
@@ -128,13 +146,12 @@
             // 
             PONameTextBox.AccessibleDescription = "Название программы";
             PONameTextBox.Cursor = Cursors.IBeam;
-            PONameTextBox.Dock = DockStyle.Fill;
             PONameTextBox.Location = new Point(225, 3);
             PONameTextBox.MaxLength = 200;
             PONameTextBox.Multiline = true;
             PONameTextBox.Name = "PONameTextBox";
             PONameTextBox.PlaceholderText = "Например: Программа визуализации результатов анализа";
-            PONameTextBox.Size = new Size(463, 54);
+            PONameTextBox.Size = new Size(445, 54);
             PONameTextBox.TabIndex = 1;
             // 
             // label7
@@ -219,10 +236,10 @@
             PositionOfSignatoryComboBox.AccessibleDescription = "Должность подписывающего документы:";
             PositionOfSignatoryComboBox.Cursor = Cursors.Hand;
             PositionOfSignatoryComboBox.FormattingEnabled = true;
-            PositionOfSignatoryComboBox.Items.AddRange(new object[] { "Начальник Краснодарского Высшего Военного Училища", "Врио Начальник Краснодарского Высшего Военного Училища" });
+            PositionOfSignatoryComboBox.Items.AddRange(new object[] { "Начальник Краснодарского Высшего Военного Училища", "Врио Начальника Краснодарского Высшего Военного Училища" });
             PositionOfSignatoryComboBox.Location = new Point(225, 143);
             PositionOfSignatoryComboBox.Name = "PositionOfSignatoryComboBox";
-            PositionOfSignatoryComboBox.Size = new Size(463, 23);
+            PositionOfSignatoryComboBox.Size = new Size(445, 23);
             PositionOfSignatoryComboBox.TabIndex = 4;
             // 
             // FIOApplicantComboBox
@@ -299,15 +316,15 @@
             // NotMainTableLayoutPanel
             // 
             NotMainTableLayoutPanel.ColumnCount = 2;
-            NotMainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle());
-            NotMainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle());
+            NotMainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            NotMainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             NotMainTableLayoutPanel.Controls.Add(DateOfDiskTextBox, 0, 0);
             NotMainTableLayoutPanel.Controls.Add(DateOfDiskComboBox, 1, 0);
             NotMainTableLayoutPanel.Location = new Point(225, 292);
             NotMainTableLayoutPanel.Name = "NotMainTableLayoutPanel";
             NotMainTableLayoutPanel.RowCount = 1;
             NotMainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            NotMainTableLayoutPanel.Size = new Size(152, 30);
+            NotMainTableLayoutPanel.Size = new Size(190, 30);
             NotMainTableLayoutPanel.TabIndex = 8;
             // 
             // DateOfDiskTextBox
@@ -326,7 +343,7 @@
             DateOfDiskComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             DateOfDiskComboBox.FormattingEnabled = true;
             DateOfDiskComboBox.Items.AddRange(new object[] { "КБ", "МБ", "ГБ" });
-            DateOfDiskComboBox.Location = new Point(102, 3);
+            DateOfDiskComboBox.Location = new Point(117, 3);
             DateOfDiskComboBox.Name = "DateOfDiskComboBox";
             DateOfDiskComboBox.Size = new Size(50, 23);
             DateOfDiskComboBox.TabIndex = 5;
@@ -335,21 +352,61 @@
             // 
             PostSigningSeparatelyComboBox.Cursor = Cursors.IBeam;
             PostSigningSeparatelyComboBox.FormattingEnabled = true;
-            PostSigningSeparatelyComboBox.Items.AddRange(new object[] { "Врио начальника отдела (организации научной работы и подготовки научно-педагогических кадров)", "Начальника отдела (организации научной работы и подготовки научно-педагогических кадров)" });
+            PostSigningSeparatelyComboBox.Items.AddRange(new object[] { "Начальник отдела (организации научной работы и подготовки научно-педагогических кадров)", "Врио начальника отдела (организации научной работы и подготовки научно-педагогических кадров)" });
             PostSigningSeparatelyComboBox.Location = new Point(225, 212);
             PostSigningSeparatelyComboBox.Name = "PostSigningSeparatelyComboBox";
-            PostSigningSeparatelyComboBox.Size = new Size(463, 23);
+            PostSigningSeparatelyComboBox.Size = new Size(445, 23);
             PostSigningSeparatelyComboBox.TabIndex = 6;
             // 
             // FIOSigningSeparatelyComboBox
             // 
             FIOSigningSeparatelyComboBox.Cursor = Cursors.IBeam;
             FIOSigningSeparatelyComboBox.FormattingEnabled = true;
-            FIOSigningSeparatelyComboBox.Items.AddRange(new object[] { "К.Баданин" });
+            FIOSigningSeparatelyComboBox.Items.AddRange(new object[] { "Ю.Нефедьев", "К.Баданин" });
             FIOSigningSeparatelyComboBox.Location = new Point(225, 252);
             FIOSigningSeparatelyComboBox.Name = "FIOSigningSeparatelyComboBox";
             FIOSigningSeparatelyComboBox.Size = new Size(152, 23);
             FIOSigningSeparatelyComboBox.TabIndex = 7;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            errorProvider2.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            errorProvider3.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider3.ContainerControl = this;
+            // 
+            // errorProvider4
+            // 
+            errorProvider4.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider4.ContainerControl = this;
+            // 
+            // errorProvider5
+            // 
+            errorProvider5.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider5.ContainerControl = this;
+            // 
+            // errorProvider6
+            // 
+            errorProvider6.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider6.ContainerControl = this;
+            // 
+            // errorProvider7
+            // 
+            errorProvider7.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider7.ContainerControl = this;
+            // 
+            // errorProvider8
+            // 
+            errorProvider8.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider8.ContainerControl = this;
             // 
             // DocumentsGeneratorOneView
             // 
@@ -368,6 +425,14 @@
             ((System.ComponentModel.ISupportInitialize)CountAuthorNumericUpDown).EndInit();
             NotMainTableLayoutPanel.ResumeLayout(false);
             NotMainTableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider8).EndInit();
             ResumeLayout(false);
         }
 
@@ -398,5 +463,13 @@
         private Label NumberPhoneAddresseeLabel;
         private ComboBox FIOAddresseeComboBox;
         private ComboBox NumberPhoneAddresseeComboBox;
+        private ErrorProvider errorProvider1;
+        private ErrorProvider errorProvider2;
+        private ErrorProvider errorProvider3;
+        private ErrorProvider errorProvider4;
+        private ErrorProvider errorProvider5;
+        private ErrorProvider errorProvider6;
+        private ErrorProvider errorProvider7;
+        private ErrorProvider errorProvider8;
     }
 }

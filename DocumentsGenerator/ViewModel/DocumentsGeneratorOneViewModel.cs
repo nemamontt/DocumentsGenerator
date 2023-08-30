@@ -9,17 +9,6 @@ namespace DocumentsGenerator.ViewModel
             TextBox dateOfDiskTextBox, ComboBox positionOfSignatoryComboBox, DateTimePicker dateOfSigningDateTimePicker, ComboBox dateOfDiskComboBox,
             ComboBox fioAddressee, ComboBox numberPhoneAddressee, ComboBox postSigningSeparately, ComboBox fioSigningSeparately, ref SubstitutionInDocument subDoc)
         {
-            if (numberPhoneAddressee.Text.Length is not 11)
-                throw new Exception("Неверно указан номер телефона");
-
-            for (int i = 0; i < numberPhoneAddressee.Text.Length; i++)
-                if(!char.IsNumber(numberPhoneAddressee.Text[i]) || numberPhoneAddressee.Text[i] is ' ')
-                    throw new Exception("Неверно указан номер телефона");
-
-            for (int i = 0; i < dateOfDiskTextBox.Text.Length; i++)
-                if (!char.IsNumber(dateOfDiskTextBox.Text[i]) || dateOfDiskTextBox.Text[i] is ' ')
-                    throw new Exception("Неверно указан объем программы");
-
             var fullNumberPhone = string.Format("{0:+# (###) ###-##-##}", Convert.ToInt64(numberPhoneAddressee.Text));
             var dateForDisk = dateOfSigningDateTimePicker.Value.ToString("dd/MM/yyyy");
             var dateSigning = dateOfSigningDateTimePicker.Value.ToString("MMMM/yyyy");

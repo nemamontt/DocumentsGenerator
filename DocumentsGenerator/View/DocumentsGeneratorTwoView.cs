@@ -57,7 +57,7 @@ namespace DocumentsGenerator.View
 
                         _vm = new DocumentsGeneratorTwoViewModel(ref subDoc, FioAuthorsTextBox, DateOfBirthAuthorsTextBox,
                                                 LocationAuthorsTextBox, CreativeInputAuthorsTextBox, PassportDetailsTextBox);
-                        
+
                         _oneView = new DocumentsGeneratorOneView(subDoc, selectedJsonFile, true, true);
                         _oneView.Show();
                         Close();
