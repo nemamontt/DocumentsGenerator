@@ -241,11 +241,17 @@ namespace DocumentsGenerator.Model
                 if (controlCollectionFORM[i] is TextBox && controlCollectionFORM[i].Text == string.Empty)
                     throw new Exception($"Заполните поле \"{controlCollectionFORM[i].AccessibleDescription}\"");              
             }
-            for (int i = 0; i < controlCollectionFORM.Count; i++)
-            {
-                if (controlCollectionFORM[i] is ComboBox && controlCollectionFORM[i].Text == string.Empty)
-                    throw new Exception($"Заполните поле \"{controlCollectionFORM[i].AccessibleDescription}\"");
-            }
+        }
+        public static bool NameVerification(string str, int bestCountPoint)
+        {
+            int countSign = default;
+            for (int i = 0; i < str.Length; i++)
+                if (str[i] is '.')
+                    countSign++;
+            if (countSign != bestCountPoint)
+                return false;
+            else
+                return true;
         }
     }
 }
