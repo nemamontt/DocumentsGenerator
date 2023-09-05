@@ -73,13 +73,17 @@ namespace DocumentsGenerator
 
             ReadyButton.Click += (s, e) =>
             {
-               foreach(var item in _errorAndField)
-                    if (item.Key.GetError(item.Value) != string.Empty) return;  
-               
-               if(errorProvider1.GetError(PONameTextBox) != string.Empty || errorProvider4.GetError(DateOfDiskComboBox) != string.Empty) return;
+                foreach (var item in _errorAndField)
+                    if (item.Key.GetError(item.Value) != string.Empty) return;
+
+                if (errorProvider1.GetError(PONameTextBox) != string.Empty || errorProvider4.GetError(DateOfDiskTextBox) != string.Empty) return;
 
                 try
-                {                    
+                {
+                    DocumentsGeneratorModel.CheckingEmptyElement(MainTableLayoutPanel.Controls);
+                    if (DateOfDiskTextBox.Text == string.Empty)
+                        throw new Exception("Заполните поле \"Занимаемое место на диске\"");
+
                     DialogResult dialogResult = MessageBox.Show("Вы уверены, что указали все корректно?\nБудет осуществлен переход на следующую форму", "Информация",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (dialogResult == DialogResult.Yes)
@@ -143,14 +147,9 @@ namespace DocumentsGenerator
             PONameTextBox.Validating += (s, e) =>
             {
                 if (string.IsNullOrEmpty(PONameTextBox.Text))
-                {
                     errorProvider1.SetError(PONameTextBox, "Заполните поле");
-                }                                     
                 else
-                {
                     errorProvider1.Clear();
-                }
-                                        
             };
 
             PositionOfSignatoryComboBox.Validating += (s, e) =>
@@ -173,6 +172,8 @@ namespace DocumentsGenerator
 
             DateOfDiskTextBox.Validating += (s, e) =>
             {
+                errorProvider4.Clear();
+
                 for (int i = 0; i < DateOfDiskTextBox.Text.Length; i++)
                     if (!char.IsNumber(DateOfDiskTextBox.Text[i]) || DateOfDiskTextBox.Text[i] is ' ')
                     {
@@ -181,8 +182,6 @@ namespace DocumentsGenerator
                     }
                 if (string.IsNullOrEmpty(DateOfDiskTextBox.Text))
                     errorProvider4.SetError(DateOfDiskTextBox, "Заполните поле");
-                else
-                    errorProvider4.Clear();
             };
 
             PostSigningSeparatelyComboBox.Validating += (s, e) =>
@@ -227,6 +226,12 @@ namespace DocumentsGenerator
                     errorProvider8.SetError(NumberPhoneAddresseeComboBox, "Неверно указан номер телефона");
                 else
                     errorProvider8.Clear();
+            };
+
+            MainTableLayoutPanel.CellPaint += (s, e) =>
+            {
+                var rectangle = e.CellBounds;
+                ControlPaint.DrawBorder(e.Graphics, rectangle, Color.DarkSlateGray, ButtonBorderStyle.Solid);
             };
         }
     }

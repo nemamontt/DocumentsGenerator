@@ -1,9 +1,11 @@
 ﻿using DocumentsGenerator.StructResours;
+using DocumentsGenerator.View;
 using Microsoft.Office.Interop.Word;
+using System;
+using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using Word = Microsoft.Office.Interop.Word;
-using DocumentsGenerator.View;
 
 namespace DocumentsGenerator.Model
 {
@@ -17,7 +19,9 @@ namespace DocumentsGenerator.Model
         private readonly string _fileNameSNOlong = "_04-1_Согласие на обработку пользовательских данных.doc";
         private readonly string _fileNameSOAshort = "_05-1_Сведения об авторе";
         private readonly string _fileNameSOAlong = "_05-1_Сведения об авторе.doc";
+        private readonly string _fileNameDKZlong = "_02-1_Дополнение к заявлению (1 оборотный, 1 простой).doc";
         private Dictionary<string, string> _replacementTable;
+
         private List<string> _replacementTableSNO;
         private List<string> _replacementTableSOA;
         private Word.Application? wordapp = null;
@@ -25,7 +29,7 @@ namespace DocumentsGenerator.Model
 
         public DocumentsGeneratorModel(ref SubstitutionInDocument subDoc, ProgressView progressView)
         {
-          
+
             _subDoc = subDoc;
             _progressView = progressView;
             _progressView.Show();
@@ -69,14 +73,14 @@ namespace DocumentsGenerator.Model
 
             _replacementTableSNO = new List<string>
             {
-                "</FioAuthors>",                
+                "</FioAuthors>",
                 "</LocationAuthor>",
                 "</PassportDataAuthor>",
                 "</ShortFioAuthors>"
             };
 
             _replacementTableSOA = new List<string>
-            {                             
+            {
                 "</FioAuthors>",
                 "</ShortFioAuthors>",
                 "</ContributionDescriptionAuthors>",
@@ -119,45 +123,51 @@ namespace DocumentsGenerator.Model
             File.Delete(Path.Combine(dirReady.FullName, _fileNameSNOlong));
             File.Delete(Path.Combine(dirReady.FullName, _fileNameSOAlong));
 
-            CreatIndividualDocument(dirReference, dirReady, wrap, replace, _fileNameSNOlong, _fileNameSNOshort, _replacementTableSNO);
-            CreatIndividualDocument(dirReference, dirReady, wrap, replace, _fileNameSOAlong, _fileNameSOAshort, _replacementTableSOA);
-          
-            foreach (var fileName in Directory.GetFiles(dirReady.FullName))
-            {
+            if(Convert.ToInt32(_subDoc.CountAuthor) is 1)
+                File.Delete(Path.Combine(dirReady.FullName, _fileNameDKZlong));
+            else
+                CreatDKZDocument(dirReady);
 
-                if (fileName == Path.Combine(dirReady.FullName, "Лицензия.pdf") || fileName == Path.Combine(dirReady.FullName, "Выписка из реестра.pdf"))
-                    continue;
+            //CreatIndividualDocument(dirReference, dirReady, wrap, replace, _fileNameSNOlong, _fileNameSNOshort, _replacementTableSNO);
+           // CreatIndividualDocument(dirReference, dirReady, wrap, replace, _fileNameSOAlong, _fileNameSOAshort, _replacementTableSOA);
+            
 
-                wordapp = new Word.Application();
-                wordapp.Documents.Open(fileName);
-                
-                foreach (var item in _replacementTable)
-                {
-                    Find find = wordapp.Selection.Find;
-                    find.Text = item.Key;
-                    find.Replacement.Text = item.Value;
+            //foreach (var fileName in Directory.GetFiles(dirReady.FullName))
+            //{
 
-                    find.Execute(
-                        FindText: Type.Missing,
-                        MatchCase: false,
-                        MatchWholeWord: false,
-                        MatchWildcards: false,
-                        MatchSoundsLike: Type.Missing,
-                        MatchAllWordForms: false,
-                        Forward: true,
-                        Wrap: wrap,
-                        Format: false,
-                        ReplaceWith: Type.Missing,
-                        Replace: replace);
-                }
-                wordapp.ActiveDocument.SaveAs2();
-                wordapp.ActiveDocument.Close();
-                wordapp.Quit();
-                _progressView.UploadingProgress();
-            }
-            _progressView.Close();
+            //    if (fileName == Path.Combine(dirReady.FullName, "Лицензия.pdf") || fileName == Path.Combine(dirReady.FullName, "Выписка из реестра.pdf"))
+            //        continue;
+
+            //    wordapp = new Word.Application();
+            //    wordapp.Documents.Open(Path.Combine(dirReady.FullName, fileName));
+
+            //    foreach (var item in _replacementTable)
+            //    {
+            //        Find find = wordapp.Selection.Find;
+            //        find.Text = item.Key;
+            //        find.Replacement.Text = item.Value;
+
+            //        find.Execute(
+            //            FindText: Type.Missing,
+            //            MatchCase: false,
+            //            MatchWholeWord: false,
+            //            MatchWildcards: false,
+            //            MatchSoundsLike: Type.Missing,
+            //            MatchAllWordForms: false,
+            //            Forward: true,
+            //            Wrap: wrap,
+            //            Format: false,
+            //            ReplaceWith: Type.Missing,
+            //            Replace: replace);
+            //    }
+            //    wordapp.ActiveDocument.SaveAs2();
+            //    wordapp.ActiveDocument.Close();
+            //    wordapp.Quit();
+            //    _progressView.UploadingProgress();
+            //}
+            //_progressView.Close();
         }
-        private void CreatIndividualDocument(DirectoryInfo dirReference, DirectoryInfo dirReady, object wrap, 
+        private void CreatIndividualDocument(DirectoryInfo dirReference, DirectoryInfo dirReady, object wrap,
             object replace, string documentFullName, string documentShortName, List<string> replacementTable)
         {
             foreach (FileInfo file in dirReference.GetFiles())
@@ -166,7 +176,7 @@ namespace DocumentsGenerator.Model
                     {
                         if (i != int.Parse(_subDoc.CountAuthor))
                             file.CopyTo(Path.Combine(dirReady.FullName, $"{documentShortName} ({_subDoc.ShortFioAuthors[i]}).doc"));
-                            
+
                         wordapp = new Word.Application();
                         wordapp.Documents.Open(Path.Combine(dirReady.FullName, $"{documentShortName} ({_subDoc.ShortFioAuthors[i]}).doc"));
 
@@ -195,9 +205,66 @@ namespace DocumentsGenerator.Model
                         _progressView.UploadingProgress();
                     }
         }
+        private void CreatDKZDocument(DirectoryInfo dirReady)
+        {
+            wordapp = new Word.Application();
+            Document worddocument = wordapp.Documents.Open(Path.Combine(dirReady.FullName, _fileNameDKZlong), ReadOnly: false);
+            Table myTable = worddocument.Tables[1];
+
+            for (int i = 0; i < int.Parse(_subDoc.CountAuthor) * 4; i++)
+                myTable.Rows.Add();
+
+            int growth = 0;
+            int sequenceNumber = 2;           
+            for (int i = 0; i < int.Parse(_subDoc.CountAuthor); i++)
+            {
+                Word.Range wordcellrange = myTable.Cell(6 + growth, 1).Range;
+                wordcellrange.Text = $"7А. СВЕДЕНИЯ ОБ АВТОРЕ\nФамилия имя отчество: </FioAuthors>{sequenceNumber}\nДата рождения: </DateOfBirthAuthors>{sequenceNumber}       Гражданство: Российская Федерация\nАвтор согласен с обработкой указанных персональных данных в объеме действий, предусмотренных предоставляемой государственной услугой, и в течение срока действия исключительного права на регистрируемый объект";
+                growth += 4;
+                sequenceNumber++;
+            }
+            growth = 0;
+            sequenceNumber = 2;
+            for (int i = 0; i < int.Parse(_subDoc.CountAuthor); i++)
+            {
+                Word.Range wordcellrange = myTable.Cell(7 + growth, 1).Range;
+                wordcellrange.Text = $"Место жительства, включая указание страны:\n</LocationAuthor>{sequenceNumber}";
+                growth += 4;
+                sequenceNumber++;
+            }
+            growth = 0;
+            sequenceNumber = 2;
+            for (int i = 0; i < int.Parse(_subDoc.CountAuthor); i++)
+            {
+                Word.Range wordcellrange = myTable.Cell(8 + growth, 1).Range;
+                wordcellrange.Text = $"Краткое описание творческого вклада автора в создание регистрируемой программы для ЭВМ или базы данных:\n</ContributionDescriptionAuthors>{sequenceNumber}";
+                growth += 4;
+                sequenceNumber++;
+            }
+            growth = 0;
+            sequenceNumber = 2;
+            for (int i = 0; i < int.Parse(_subDoc.CountAuthor); i++)
+            {
+                Word.Range wordcellrange = myTable.Cell(9 + growth, 1).Range;
+                wordcellrange.Text = "При публикации сведений о государственной регистрации программы для ЭВМ или базы данных автор согласен:\n(отметить[X])\nупоминать его под своим именем\t\tне упоминать его(анонимно)\nупоминать его под псевдонимом ________________________________________________";
+                growth += 4;
+                sequenceNumber++;
+            }
+            myTable.Rows.Add();
+            Word.Range wordcellrange2 = myTable.Cell(myTable.Rows.Count, 1).Range;
+            wordcellrange2.Text = "ИДИ НАХУЙ";
+
+            worddocument.Tables[1].Rows.HeightRule = WdRowHeightRule.wdRowHeightAuto;
+            worddocument.Paragraphs[1].Format.LineSpacingRule = (WdLineSpacing)0.5;
+
+            wordapp.ActiveDocument.SaveAs2();
+            wordapp.ActiveDocument.Close();
+            wordapp.Quit();
+            _progressView.UploadingProgress();
+        }
         public static string RemovingSpaces(string originalString)
         {
-            if(string.IsNullOrEmpty(originalString)) 
+            if (string.IsNullOrEmpty(originalString))
                 return originalString;
 
             string resultString = originalString;
@@ -239,7 +306,7 @@ namespace DocumentsGenerator.Model
             for (int i = 0; i < controlCollectionFORM.Count; i++)
             {
                 if (controlCollectionFORM[i] is TextBox && controlCollectionFORM[i].Text == string.Empty)
-                    throw new Exception($"Заполните поле \"{controlCollectionFORM[i].AccessibleDescription}\"");              
+                    throw new Exception($"Заполните поле \"{controlCollectionFORM[i].AccessibleDescription}\"");
             }
         }
         public static bool NameVerification(string str, int bestCountPoint)

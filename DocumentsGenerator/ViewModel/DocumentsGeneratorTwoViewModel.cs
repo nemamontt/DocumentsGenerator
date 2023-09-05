@@ -8,15 +8,7 @@ namespace DocumentsGenerator.ViewModel
         private List<TextBox> _textBoxs;
         public DocumentsGeneratorTwoViewModel(ref SubstitutionInDocument subDoc, TextBox fioOtherAuthorTextBox, TextBox dateOfBirthOtherAuthorsTextBox, 
             TextBox locationOtherAuthorTextBox, TextBox creativeInputOtherAuthorTextBox, TextBox passportDetailsTextBox)
-        {
-            for (int i = 0; i < dateOfBirthOtherAuthorsTextBox.Text.Length; i++)
-            {
-                if (dateOfBirthOtherAuthorsTextBox.Text[i] is '|' || dateOfBirthOtherAuthorsTextBox.Text[i] is '.')
-                    continue;
-                if (!char.IsNumber(dateOfBirthOtherAuthorsTextBox.Text[i]) || dateOfBirthOtherAuthorsTextBox.Text[i] is ' ')
-                    throw new Exception("Неверно указана дата рождения,\nформат: дд.мм.гггг");
-            }
-                
+        {                            
             _textBoxs = new List<TextBox>()
             {
                 fioOtherAuthorTextBox,
@@ -25,20 +17,6 @@ namespace DocumentsGenerator.ViewModel
                 creativeInputOtherAuthorTextBox,
                 passportDetailsTextBox
             };
-
-            foreach (var item in _textBoxs) 
-            {
-                int counter = 0;
-                for (int i = 0; i < item.Text.Length; i++)
-                {
-                    if (item.Text[i] is '|')
-                        counter++;
-                }
-                if (counter + 1 < Convert.ToInt32(subDoc.CountAuthor))
-                    throw new Exception($"Вы забыли указать разделитель в поле \"{item.AccessibleDescription}\"");
-                else if (counter + 1 > Convert.ToInt32(subDoc.CountAuthor))
-                    throw new Exception($"Вы указали больше разделителей в поле \"{item.AccessibleDescription}\"");
-            }
 
             foreach (var item in _textBoxs)
                 item.Text = DocumentsGeneratorModel.RemovingSpaces(item.Text);
@@ -61,7 +39,6 @@ namespace DocumentsGenerator.ViewModel
             subDoc.LocationAuthor.AddRange(splitStringLocation);
             subDoc.ContributionDescriptionAuthors.AddRange(splitStringCreativeInput);
             subDoc.PassportDataAuthor.AddRange(splitStringPassportDetails);
-
             subDoc.FullStringFioAuthors = string.Join(", ", subDoc.FioAuthors.ToArray());
 
             foreach (var item in subDoc.FioAuthors)
@@ -75,7 +52,7 @@ namespace DocumentsGenerator.ViewModel
                 if (countSpace != 2)
                     throw new Exception($"Неверно заполнено поле \"ФИО автора(ов)\"");
             }
-            string[]? splitStringDate = default;
+            string[] splitStringDate;
 
             for (int i = 0; i < splitStringDateOfBirth.Length; i++)
             {
@@ -118,7 +95,8 @@ namespace DocumentsGenerator.ViewModel
                 else
                     subDoc.ShortFioAuthors.Add(item);
             }
-            subDoc.FullStringShortFioAuthors = string.Join(", ", subDoc.ShortFioAuthors.ToArray());
+
+            subDoc.FullStringShortFioAuthors = string.Join(", ", subDoc.ShortFioAuthors.ToArray());           
             subDoc.FullNameTransfer = subDoc.FullStringShortFioAuthors.Replace(", ", "^p");
         }
     }

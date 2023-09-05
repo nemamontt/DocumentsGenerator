@@ -1,10 +1,9 @@
-﻿using System.Xml.Linq;
-
+﻿
 namespace DocumentsGenerator.StructResours
 {
     public struct SubstitutionInDocument
     {
-        public  string CountAuthor { get; set; }
+        public string CountAuthor { get; set; }
         public string POName { get; set; }
         public string DateOfDisk { get; set; }
         public string DateOfBirthYear { get; set; }

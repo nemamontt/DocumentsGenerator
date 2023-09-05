@@ -29,29 +29,30 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocumentsGeneratorMainView));
-            Panel = new Panel();
+            MainPanel = new Panel();
             CreatDocumentButton = new Button();
-            button3 = new Button();
+            GetReferenceButton = new Button();
             DownloadPackageButton = new Button();
-            Panel.SuspendLayout();
+            MainPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // Panel
+            // MainPanel
             // 
-            Panel.Controls.Add(CreatDocumentButton);
-            Panel.Controls.Add(button3);
-            Panel.Controls.Add(DownloadPackageButton);
-            Panel.Dock = DockStyle.Fill;
-            Panel.Location = new Point(0, 0);
-            Panel.Name = "Panel";
-            Panel.Size = new Size(234, 181);
-            Panel.TabIndex = 0;
+            MainPanel.Controls.Add(CreatDocumentButton);
+            MainPanel.Controls.Add(GetReferenceButton);
+            MainPanel.Controls.Add(DownloadPackageButton);
+            MainPanel.Dock = DockStyle.Fill;
+            MainPanel.Location = new Point(0, 0);
+            MainPanel.Name = "MainPanel";
+            MainPanel.Size = new Size(234, 181);
+            MainPanel.TabIndex = 0;
             // 
             // CreatDocumentButton
             // 
             CreatDocumentButton.Cursor = Cursors.Hand;
             CreatDocumentButton.Dock = DockStyle.Top;
             CreatDocumentButton.FlatStyle = FlatStyle.System;
+            CreatDocumentButton.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             CreatDocumentButton.Location = new Point(0, 0);
             CreatDocumentButton.Name = "CreatDocumentButton";
             CreatDocumentButton.Size = new Size(234, 63);
@@ -59,23 +60,25 @@
             CreatDocumentButton.Text = "Создать пакет документов";
             CreatDocumentButton.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // GetReferenceButton
             // 
-            button3.Cursor = Cursors.Hand;
-            button3.Dock = DockStyle.Bottom;
-            button3.FlatStyle = FlatStyle.System;
-            button3.Location = new Point(0, 122);
-            button3.Name = "button3";
-            button3.Size = new Size(234, 59);
-            button3.TabIndex = 3;
-            button3.Text = "О программе";
-            button3.UseVisualStyleBackColor = true;
+            GetReferenceButton.Cursor = Cursors.Hand;
+            GetReferenceButton.Dock = DockStyle.Bottom;
+            GetReferenceButton.FlatStyle = FlatStyle.System;
+            GetReferenceButton.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            GetReferenceButton.Location = new Point(0, 122);
+            GetReferenceButton.Name = "GetReferenceButton";
+            GetReferenceButton.Size = new Size(234, 59);
+            GetReferenceButton.TabIndex = 3;
+            GetReferenceButton.Text = "О программе";
+            GetReferenceButton.UseVisualStyleBackColor = true;
             // 
             // DownloadPackageButton
             // 
             DownloadPackageButton.Cursor = Cursors.Hand;
             DownloadPackageButton.Dock = DockStyle.Fill;
             DownloadPackageButton.FlatStyle = FlatStyle.System;
+            DownloadPackageButton.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             DownloadPackageButton.Location = new Point(0, 0);
             DownloadPackageButton.Name = "DownloadPackageButton";
             DownloadPackageButton.Size = new Size(234, 181);
@@ -88,21 +91,21 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(234, 181);
-            Controls.Add(Panel);
+            Controls.Add(MainPanel);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimumSize = new Size(250, 220);
             Name = "DocumentsGeneratorMainView";
             StartPosition = FormStartPosition.CenterScreen;
-            Panel.ResumeLayout(false);
+            MainPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel Panel;
+        private Panel MainPanel;
         private Button CreatDocumentButton;
         private Button DownloadPackageButton;
-        private Button button3;
+        private Button GetReferenceButton;
     }
 }

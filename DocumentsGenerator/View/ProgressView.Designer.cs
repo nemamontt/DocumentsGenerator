@@ -29,29 +29,19 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressView));
             ResultProgressBar = new ProgressBar();
-            TextLabel = new Label();
             GeneratingPointsTimer = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // ResultProgressBar
             // 
-            ResultProgressBar.Location = new Point(12, 33);
+            ResultProgressBar.Dock = DockStyle.Fill;
+            ResultProgressBar.Location = new Point(0, 0);
             ResultProgressBar.Name = "ResultProgressBar";
-            ResultProgressBar.Size = new Size(331, 46);
+            ResultProgressBar.Size = new Size(383, 43);
             ResultProgressBar.Style = ProgressBarStyle.Continuous;
             ResultProgressBar.TabIndex = 0;
-            // 
-            // TextLabel
-            // 
-            TextLabel.AutoSize = true;
-            TextLabel.BackColor = Color.Transparent;
-            TextLabel.Font = new Font("Cascadia Mono", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            TextLabel.Location = new Point(102, 9);
-            TextLabel.Name = "TextLabel";
-            TextLabel.Size = new Size(145, 21);
-            TextLabel.TabIndex = 1;
-            TextLabel.Text = "Создание пакета";
             // 
             // GeneratingPointsTimer
             // 
@@ -61,21 +51,18 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(360, 91);
-            Controls.Add(TextLabel);
+            ClientSize = new Size(383, 43);
             Controls.Add(ResultProgressBar);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            MaximumSize = new Size(376, 130);
-            MinimumSize = new Size(376, 130);
             Name = "ProgressView";
             StartPosition = FormStartPosition.CenterScreen;
+            Text = "Создание пакета";
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-        private Label TextLabel;
         public ProgressBar ResultProgressBar;
         private System.Windows.Forms.Timer GeneratingPointsTimer;
     }

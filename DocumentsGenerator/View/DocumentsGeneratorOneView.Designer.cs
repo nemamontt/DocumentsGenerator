@@ -78,6 +78,7 @@
             // 
             // MainTableLayoutPanel
             // 
+            MainTableLayoutPanel.BackColor = SystemColors.Window;
             MainTableLayoutPanel.ColumnCount = 2;
             MainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.26891F));
             MainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 67.73109F));
@@ -104,7 +105,9 @@
             MainTableLayoutPanel.Controls.Add(NotMainTableLayoutPanel, 1, 7);
             MainTableLayoutPanel.Controls.Add(PostSigningSeparatelyComboBox, 1, 5);
             MainTableLayoutPanel.Controls.Add(FIOSigningSeparatelyComboBox, 1, 6);
+            MainTableLayoutPanel.Cursor = Cursors.Arrow;
             MainTableLayoutPanel.Dock = DockStyle.Fill;
+            MainTableLayoutPanel.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             MainTableLayoutPanel.Location = new Point(0, 0);
             MainTableLayoutPanel.Name = "MainTableLayoutPanel";
             MainTableLayoutPanel.RowCount = 11;
@@ -126,9 +129,10 @@
             // 
             BackButton.Cursor = Cursors.Hand;
             BackButton.Dock = DockStyle.Fill;
-            BackButton.Location = new Point(3, 390);
+            BackButton.FlatStyle = FlatStyle.System;
+            BackButton.Location = new Point(3, 393);
             BackButton.Name = "BackButton";
-            BackButton.Size = new Size(216, 43);
+            BackButton.Size = new Size(216, 40);
             BackButton.TabIndex = 12;
             BackButton.Text = "Назад";
             BackButton.UseVisualStyleBackColor = true;
@@ -136,15 +140,19 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.Black;
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(136, 15);
+            label1.Size = new Size(160, 17);
             label1.TabIndex = 0;
             label1.Text = "Название программы:";
             // 
             // PONameTextBox
             // 
             PONameTextBox.AccessibleDescription = "Название программы";
+            PONameTextBox.BackColor = SystemColors.Window;
             PONameTextBox.Cursor = Cursors.IBeam;
             PONameTextBox.Location = new Point(225, 3);
             PONameTextBox.MaxLength = 200;
@@ -157,16 +165,18 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(3, 289);
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(3, 294);
             label7.Name = "label7";
-            label7.Size = new Size(174, 15);
+            label7.Size = new Size(216, 17);
             label7.TabIndex = 6;
             label7.Text = "Занимаемое место на диске:";
             // 
             // DateOfSigningDateTimePicker
             // 
             DateOfSigningDateTimePicker.Cursor = Cursors.Hand;
-            DateOfSigningDateTimePicker.Location = new Point(225, 359);
+            DateOfSigningDateTimePicker.Location = new Point(225, 363);
             DateOfSigningDateTimePicker.Name = "DateOfSigningDateTimePicker";
             DateOfSigningDateTimePicker.Size = new Size(152, 23);
             DateOfSigningDateTimePicker.TabIndex = 10;
@@ -175,18 +185,22 @@
             // label9
             // 
             label9.AutoSize = true;
+            label9.BackColor = Color.Transparent;
+            label9.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label9.Location = new Point(3, 180);
             label9.Name = "label9";
-            label9.Size = new Size(215, 15);
+            label9.Size = new Size(160, 34);
             label9.TabIndex = 8;
             label9.Text = "ФИО подписывающего документы:";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(3, 356);
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Location = new Point(3, 360);
             label8.Name = "label8";
-            label8.Size = new Size(109, 15);
+            label8.Size = new Size(136, 17);
             label8.TabIndex = 7;
             label8.Text = "Дата подписания:";
             // 
@@ -194,9 +208,10 @@
             // 
             ReadyButton.Cursor = Cursors.Hand;
             ReadyButton.Dock = DockStyle.Fill;
-            ReadyButton.Location = new Point(225, 390);
+            ReadyButton.FlatStyle = FlatStyle.System;
+            ReadyButton.Location = new Point(225, 393);
             ReadyButton.Name = "ReadyButton";
-            ReadyButton.Size = new Size(463, 43);
+            ReadyButton.Size = new Size(463, 40);
             ReadyButton.TabIndex = 11;
             ReadyButton.Text = "Готово";
             ReadyButton.UseVisualStyleBackColor = true;
@@ -204,25 +219,30 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 325);
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(3, 330);
             label2.Name = "label2";
-            label2.Size = new Size(135, 15);
+            label2.Size = new Size(168, 17);
             label2.TabIndex = 1;
             label2.Text = "Колличество авторов:";
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(3, 140);
             label3.Name = "label3";
-            label3.Size = new Size(184, 30);
+            label3.Size = new Size(208, 34);
             label3.TabIndex = 9;
             label3.Text = "Должность подписывающего документы:";
             // 
             // CountAuthorNumericUpDown
             // 
+            CountAuthorNumericUpDown.BackColor = SystemColors.Window;
             CountAuthorNumericUpDown.Cursor = Cursors.Hand;
-            CountAuthorNumericUpDown.Location = new Point(225, 328);
+            CountAuthorNumericUpDown.Location = new Point(225, 333);
             CountAuthorNumericUpDown.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
             CountAuthorNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             CountAuthorNumericUpDown.Name = "CountAuthorNumericUpDown";
@@ -234,83 +254,95 @@
             // PositionOfSignatoryComboBox
             // 
             PositionOfSignatoryComboBox.AccessibleDescription = "Должность подписывающего документы:";
-            PositionOfSignatoryComboBox.Cursor = Cursors.Hand;
+            PositionOfSignatoryComboBox.BackColor = SystemColors.Window;
+            PositionOfSignatoryComboBox.Cursor = Cursors.IBeam;
             PositionOfSignatoryComboBox.FormattingEnabled = true;
-            PositionOfSignatoryComboBox.Items.AddRange(new object[] { "Начальник Краснодарского Высшего Военного Училища", "Врио Начальника Краснодарского Высшего Военного Училища" });
+            PositionOfSignatoryComboBox.Items.AddRange(new object[] { "Начальник Краснодарского высшего военного училища", "Врио Начальника  Краснодарского высшего военного училища" });
             PositionOfSignatoryComboBox.Location = new Point(225, 143);
             PositionOfSignatoryComboBox.Name = "PositionOfSignatoryComboBox";
-            PositionOfSignatoryComboBox.Size = new Size(445, 23);
+            PositionOfSignatoryComboBox.Size = new Size(445, 25);
             PositionOfSignatoryComboBox.TabIndex = 4;
             // 
             // FIOApplicantComboBox
             // 
             FIOApplicantComboBox.AccessibleDescription = "ФИО подписывающего документы:";
+            FIOApplicantComboBox.BackColor = SystemColors.Window;
             FIOApplicantComboBox.Cursor = Cursors.IBeam;
             FIOApplicantComboBox.FormattingEnabled = true;
             FIOApplicantComboBox.ImeMode = ImeMode.Hiragana;
             FIOApplicantComboBox.Items.AddRange(new object[] { "Шпырня И.В.", "Киреев П.Н." });
             FIOApplicantComboBox.Location = new Point(225, 183);
             FIOApplicantComboBox.Name = "FIOApplicantComboBox";
-            FIOApplicantComboBox.Size = new Size(152, 23);
+            FIOApplicantComboBox.Size = new Size(152, 25);
             FIOApplicantComboBox.TabIndex = 5;
             // 
             // PostSigningSeparatelyLabel
             // 
             PostSigningSeparatelyLabel.AutoSize = true;
-            PostSigningSeparatelyLabel.Location = new Point(3, 209);
+            PostSigningSeparatelyLabel.BackColor = Color.Transparent;
+            PostSigningSeparatelyLabel.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            PostSigningSeparatelyLabel.Location = new Point(3, 214);
             PostSigningSeparatelyLabel.Name = "PostSigningSeparatelyLabel";
-            PostSigningSeparatelyLabel.Size = new Size(184, 30);
+            PostSigningSeparatelyLabel.Size = new Size(208, 34);
             PostSigningSeparatelyLabel.TabIndex = 10;
             PostSigningSeparatelyLabel.Text = "Должность подписывающего отдельные документы:";
             // 
             // FIOSigningSeparatelyLabel
             // 
             FIOSigningSeparatelyLabel.AutoSize = true;
-            FIOSigningSeparatelyLabel.Location = new Point(3, 249);
+            FIOSigningSeparatelyLabel.BackColor = Color.Transparent;
+            FIOSigningSeparatelyLabel.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            FIOSigningSeparatelyLabel.Location = new Point(3, 254);
             FIOSigningSeparatelyLabel.Name = "FIOSigningSeparatelyLabel";
-            FIOSigningSeparatelyLabel.Size = new Size(214, 30);
+            FIOSigningSeparatelyLabel.Size = new Size(168, 34);
             FIOSigningSeparatelyLabel.TabIndex = 11;
             FIOSigningSeparatelyLabel.Text = "ФИО подписывающего отдельные документы:";
             // 
             // FIOAddresseeLabel
             // 
             FIOAddresseeLabel.AutoSize = true;
+            FIOAddresseeLabel.BackColor = Color.Transparent;
+            FIOAddresseeLabel.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             FIOAddresseeLabel.Location = new Point(3, 60);
             FIOAddresseeLabel.Name = "FIOAddresseeLabel";
-            FIOAddresseeLabel.Size = new Size(182, 15);
+            FIOAddresseeLabel.Size = new Size(144, 34);
             FIOAddresseeLabel.TabIndex = 14;
             FIOAddresseeLabel.Text = "ФИО адресата для переписки:";
             // 
             // NumberPhoneAddresseeLabel
             // 
             NumberPhoneAddresseeLabel.AutoSize = true;
+            NumberPhoneAddresseeLabel.BackColor = Color.Transparent;
+            NumberPhoneAddresseeLabel.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             NumberPhoneAddresseeLabel.Location = new Point(3, 100);
             NumberPhoneAddresseeLabel.Name = "NumberPhoneAddresseeLabel";
-            NumberPhoneAddresseeLabel.Size = new Size(183, 15);
+            NumberPhoneAddresseeLabel.Size = new Size(128, 34);
             NumberPhoneAddresseeLabel.TabIndex = 15;
             NumberPhoneAddresseeLabel.Text = "Номер телефона отправителя:";
             // 
             // FIOAddresseeComboBox
             // 
             FIOAddresseeComboBox.AccessibleDescription = "ФИО адресата для переписки";
+            FIOAddresseeComboBox.BackColor = SystemColors.Window;
             FIOAddresseeComboBox.Cursor = Cursors.IBeam;
             FIOAddresseeComboBox.FormattingEnabled = true;
             FIOAddresseeComboBox.Items.AddRange(new object[] { "Комиссарова Т.П." });
             FIOAddresseeComboBox.Location = new Point(225, 63);
             FIOAddresseeComboBox.Name = "FIOAddresseeComboBox";
-            FIOAddresseeComboBox.Size = new Size(152, 23);
+            FIOAddresseeComboBox.Size = new Size(152, 25);
             FIOAddresseeComboBox.TabIndex = 2;
             // 
             // NumberPhoneAddresseeComboBox
             // 
             NumberPhoneAddresseeComboBox.AccessibleDescription = "Номер телефона отправителя";
+            NumberPhoneAddresseeComboBox.BackColor = SystemColors.Window;
             NumberPhoneAddresseeComboBox.Cursor = Cursors.IBeam;
             NumberPhoneAddresseeComboBox.FormattingEnabled = true;
             NumberPhoneAddresseeComboBox.Items.AddRange(new object[] { "89615152985" });
             NumberPhoneAddresseeComboBox.Location = new Point(225, 103);
             NumberPhoneAddresseeComboBox.MaxLength = 11;
             NumberPhoneAddresseeComboBox.Name = "NumberPhoneAddresseeComboBox";
-            NumberPhoneAddresseeComboBox.Size = new Size(152, 23);
+            NumberPhoneAddresseeComboBox.Size = new Size(152, 25);
             NumberPhoneAddresseeComboBox.TabIndex = 3;
             // 
             // NotMainTableLayoutPanel
@@ -320,7 +352,7 @@
             NotMainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             NotMainTableLayoutPanel.Controls.Add(DateOfDiskTextBox, 0, 0);
             NotMainTableLayoutPanel.Controls.Add(DateOfDiskComboBox, 1, 0);
-            NotMainTableLayoutPanel.Location = new Point(225, 292);
+            NotMainTableLayoutPanel.Location = new Point(225, 297);
             NotMainTableLayoutPanel.Name = "NotMainTableLayoutPanel";
             NotMainTableLayoutPanel.RowCount = 1;
             NotMainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -329,6 +361,7 @@
             // 
             // DateOfDiskTextBox
             // 
+            DateOfDiskTextBox.BackColor = SystemColors.Window;
             DateOfDiskTextBox.Cursor = Cursors.IBeam;
             DateOfDiskTextBox.Location = new Point(3, 3);
             DateOfDiskTextBox.MaxLength = 4;
@@ -339,33 +372,36 @@
             // 
             // DateOfDiskComboBox
             // 
+            DateOfDiskComboBox.BackColor = Color.FromArgb(195, 188, 6);
             DateOfDiskComboBox.Cursor = Cursors.Hand;
             DateOfDiskComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             DateOfDiskComboBox.FormattingEnabled = true;
             DateOfDiskComboBox.Items.AddRange(new object[] { "КБ", "МБ", "ГБ" });
             DateOfDiskComboBox.Location = new Point(117, 3);
             DateOfDiskComboBox.Name = "DateOfDiskComboBox";
-            DateOfDiskComboBox.Size = new Size(50, 23);
+            DateOfDiskComboBox.Size = new Size(50, 25);
             DateOfDiskComboBox.TabIndex = 5;
             // 
             // PostSigningSeparatelyComboBox
             // 
-            PostSigningSeparatelyComboBox.Cursor = Cursors.IBeam;
+            PostSigningSeparatelyComboBox.BackColor = SystemColors.Window;
+            PostSigningSeparatelyComboBox.Cursor = Cursors.Hand;
             PostSigningSeparatelyComboBox.FormattingEnabled = true;
             PostSigningSeparatelyComboBox.Items.AddRange(new object[] { "Начальник отдела (организации научной работы и подготовки научно-педагогических кадров)", "Врио начальника отдела (организации научной работы и подготовки научно-педагогических кадров)" });
-            PostSigningSeparatelyComboBox.Location = new Point(225, 212);
+            PostSigningSeparatelyComboBox.Location = new Point(225, 217);
             PostSigningSeparatelyComboBox.Name = "PostSigningSeparatelyComboBox";
-            PostSigningSeparatelyComboBox.Size = new Size(445, 23);
+            PostSigningSeparatelyComboBox.Size = new Size(445, 25);
             PostSigningSeparatelyComboBox.TabIndex = 6;
             // 
             // FIOSigningSeparatelyComboBox
             // 
+            FIOSigningSeparatelyComboBox.BackColor = SystemColors.Window;
             FIOSigningSeparatelyComboBox.Cursor = Cursors.IBeam;
             FIOSigningSeparatelyComboBox.FormattingEnabled = true;
             FIOSigningSeparatelyComboBox.Items.AddRange(new object[] { "Ю.Нефедьев", "К.Баданин" });
-            FIOSigningSeparatelyComboBox.Location = new Point(225, 252);
+            FIOSigningSeparatelyComboBox.Location = new Point(225, 257);
             FIOSigningSeparatelyComboBox.Name = "FIOSigningSeparatelyComboBox";
-            FIOSigningSeparatelyComboBox.Size = new Size(152, 23);
+            FIOSigningSeparatelyComboBox.Size = new Size(152, 25);
             FIOSigningSeparatelyComboBox.TabIndex = 7;
             // 
             // errorProvider1
@@ -414,6 +450,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(691, 436);
             Controls.Add(MainTableLayoutPanel);
+            Cursor = Cursors.Help;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;

@@ -9,7 +9,8 @@
             ResultProgressBar.Minimum = 0;
             ResultProgressBar.Maximum = maximum;
             ResultProgressBar.Step = 1;
-            ResultProgressBar.Value = 0;
+            //ResultProgressBar.Value = 0;
+            ResultProgressBar.Value = 1;
         }
         public void UploadingProgress()
         {

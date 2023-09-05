@@ -1,5 +1,6 @@
 ﻿using DocumentsGenerator.Model;
 using DocumentsGenerator.StructResours;
+using System.Globalization;
 
 namespace DocumentsGenerator.ViewModel
 {
@@ -9,11 +10,12 @@ namespace DocumentsGenerator.ViewModel
             TextBox dateOfDiskTextBox, ComboBox positionOfSignatoryComboBox, DateTimePicker dateOfSigningDateTimePicker, ComboBox dateOfDiskComboBox,
             ComboBox fioAddressee, ComboBox numberPhoneAddressee, ComboBox postSigningSeparately, ComboBox fioSigningSeparately, ref SubstitutionInDocument subDoc)
         {
+            var cultureRu = CultureInfo.CreateSpecificCulture("ru-RU");
+            cultureRu.DateTimeFormat.MonthNames = new string[] {"января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря",""};
             var fullNumberPhone = string.Format("{0:+# (###) ###-##-##}", Convert.ToInt64(numberPhoneAddressee.Text));
             var dateForDisk = dateOfSigningDateTimePicker.Value.ToString("dd/MM/yyyy");
-            var dateSigning = dateOfSigningDateTimePicker.Value.ToString("MMMM/yyyy");
+            var dateSigning = dateOfSigningDateTimePicker.Value.ToString("MMMM yyyy", cultureRu);
             var yearCreationProgram = dateOfSigningDateTimePicker.Value.Year.ToString();
-            dateSigning = dateSigning.Replace(".", " ");
 
             var postSigningSeparately1 = DocumentsGeneratorModel.RemovingSpaces(postSigningSeparately.Text);
             for (int i = postSigningSeparately1.Length / 2; i < postSigningSeparately1.Length; i++)
