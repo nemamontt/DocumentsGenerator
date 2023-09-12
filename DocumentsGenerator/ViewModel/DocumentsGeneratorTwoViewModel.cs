@@ -1,5 +1,5 @@
-﻿using DocumentsGenerator.Model;
-using DocumentsGenerator.StructResours;
+﻿using DocumentsGenerator.StructResours;
+using DocumentsGenerator.WordsWorks;
 
 namespace DocumentsGenerator.ViewModel
 {
@@ -19,7 +19,7 @@ namespace DocumentsGenerator.ViewModel
             };
 
             foreach (var item in _textBoxs)
-                item.Text = DocumentsGeneratorModel.RemovingSpaces(item.Text);
+                item.Text = WordsWork.RemovingSpaces(item.Text);
 
             string[] splitStringFIO = fioOtherAuthorTextBox.Text.Split(new char[] { '|' });
             string[] splitStringDateOfBirth = dateOfBirthOtherAuthorsTextBox.Text.Split(new char[] { '|' });

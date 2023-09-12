@@ -1,4 +1,4 @@
-﻿using DocumentsGenerator.Model;
+﻿using DocumentsGenerator.WordsWorks;
 using DocumentsGenerator.StructResours;
 using System.Globalization;
 
@@ -17,7 +17,7 @@ namespace DocumentsGenerator.ViewModel
             var dateSigning = dateOfSigningDateTimePicker.Value.ToString("MMMM yyyy", cultureRu);
             var yearCreationProgram = dateOfSigningDateTimePicker.Value.Year.ToString();
 
-            var postSigningSeparately1 = DocumentsGeneratorModel.RemovingSpaces(postSigningSeparately.Text);
+            var postSigningSeparately1 = WordsWork.RemovingSpaces(postSigningSeparately.Text);
             for (int i = postSigningSeparately1.Length / 2; i < postSigningSeparately1.Length; i++)
                 if (postSigningSeparately1[i] is ' ')
                 {
@@ -26,7 +26,7 @@ namespace DocumentsGenerator.ViewModel
                     break;
                 }
 
-            var positionOfSignator = DocumentsGeneratorModel.RemovingSpaces(positionOfSignatoryComboBox.Text);
+            var positionOfSignator = WordsWork.RemovingSpaces(positionOfSignatoryComboBox.Text);
             for (int i = positionOfSignator.Length / 2; i < positionOfSignator.Length; i++)
                 if (positionOfSignator[i] is ' ')
                 {                   
@@ -39,15 +39,15 @@ namespace DocumentsGenerator.ViewModel
             subDoc.DateOfSigning = dateSigning;
             subDoc.CountAuthor = countAuthorTextBox.Text;
             subDoc.NumberPhoneAddressee = fullNumberPhone;
-            subDoc.DateForDisk = DocumentsGeneratorModel.RemovingSpaces(dateForDisk);
-            subDoc.POName = DocumentsGeneratorModel.RemovingSpaces(poNameTextBox.Text);
-            subDoc.FIOApplicant = DocumentsGeneratorModel.RemovingSpaces(FIOApplicantComboBox.Text);
-            subDoc.DateOfDisk = DocumentsGeneratorModel.RemovingSpaces(dateOfDiskTextBox.Text + " " + dateOfDiskComboBox.Text);
-            subDoc.YearCreationProgram = DocumentsGeneratorModel.RemovingSpaces(yearCreationProgram);
-            subDoc.PositionOfSignatory = DocumentsGeneratorModel.RemovingSpaces(positionOfSignatoryComboBox.Text);
-            subDoc.FIOAddressee = DocumentsGeneratorModel.RemovingSpaces(fioAddressee.Text);            
-            subDoc.PostSigningSeparately = DocumentsGeneratorModel.RemovingSpaces(postSigningSeparately.Text);
-            subDoc.FIOSigningSeparately = DocumentsGeneratorModel.RemovingSpaces(fioSigningSeparately.Text);
+            subDoc.DateForDisk = WordsWork.RemovingSpaces(dateForDisk);
+            subDoc.POName = WordsWork.RemovingSpaces(poNameTextBox.Text);
+            subDoc.FIOApplicant = WordsWork.RemovingSpaces(FIOApplicantComboBox.Text);
+            subDoc.DateOfDisk = WordsWork.RemovingSpaces(dateOfDiskTextBox.Text + " " + dateOfDiskComboBox.Text);
+            subDoc.YearCreationProgram = WordsWork.RemovingSpaces(yearCreationProgram);
+            subDoc.PositionOfSignatory = WordsWork.RemovingSpaces(positionOfSignatoryComboBox.Text);
+            subDoc.FIOAddressee = WordsWork.RemovingSpaces(fioAddressee.Text);            
+            subDoc.PostSigningSeparately = WordsWork.RemovingSpaces(postSigningSeparately.Text);
+            subDoc.FIOSigningSeparately = WordsWork.RemovingSpaces(fioSigningSeparately.Text);
         }
     }
 }

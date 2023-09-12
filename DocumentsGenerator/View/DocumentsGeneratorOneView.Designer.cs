@@ -372,7 +372,7 @@
             // 
             // DateOfDiskComboBox
             // 
-            DateOfDiskComboBox.BackColor = Color.FromArgb(195, 188, 6);
+            DateOfDiskComboBox.BackColor = SystemColors.Window;
             DateOfDiskComboBox.Cursor = Cursors.Hand;
             DateOfDiskComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             DateOfDiskComboBox.FormattingEnabled = true;

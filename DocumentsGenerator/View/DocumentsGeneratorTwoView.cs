@@ -1,4 +1,4 @@
-﻿using DocumentsGenerator.Model;
+﻿using DocumentsGenerator.WordsWorks;
 using DocumentsGenerator.StructResours;
 using DocumentsGenerator.ViewModel;
 
@@ -52,7 +52,7 @@ namespace DocumentsGenerator.View
                 {
                     try
                     {
-                        DocumentsGeneratorModel.CheckingEmptyElement(MainTableLayoutPanel.Controls);
+                        WordsWork.CheckingEmptyElement(MainTableLayoutPanel.Controls);
 
                         _vm = new DocumentsGeneratorTwoViewModel(ref subDoc, FioAuthorsTextBox, DateOfBirthAuthorsTextBox,
                                                 LocationAuthorsTextBox, CreativeInputAuthorsTextBox, PassportDetailsTextBox);
@@ -88,7 +88,7 @@ namespace DocumentsGenerator.View
                     foreach (var item in _errorAndField)
                         if (item.Key.GetError(item.Value) != string.Empty) return;
 
-                    DocumentsGeneratorModel.CheckingEmptyElement(MainTableLayoutPanel.Controls);
+                    WordsWork.CheckingEmptyElement(MainTableLayoutPanel.Controls);
 
                     _vm = new DocumentsGeneratorTwoViewModel(ref subDoc, FioAuthorsTextBox, DateOfBirthAuthorsTextBox,
                                             LocationAuthorsTextBox, CreativeInputAuthorsTextBox, PassportDetailsTextBox);

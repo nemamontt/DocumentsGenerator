@@ -1,8 +1,6 @@
 ﻿using DocumentsGenerator.StructResours;
 using DocumentsGenerator.View;
 using Microsoft.Office.Interop.Word;
-using System;
-using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using Word = Microsoft.Office.Interop.Word;
@@ -21,10 +19,10 @@ namespace DocumentsGenerator.Model
         private readonly string _fileNameSOAlong = "_05-1_Сведения об авторе.doc";
         private readonly string _fileNameDKZlong = "_02-1_Дополнение к заявлению (1 оборотный, 1 простой).doc";
         private Dictionary<string, string> _replacementTable;
-
         private List<string> _replacementTableSNO;
         private List<string> _replacementTableSOA;
-        private Word.Application? wordapp = null;
+        private List<string> _replacementTableDKZ;
+        private Word.Application _wordapp;
         private ProgressView _progressView;
 
         public DocumentsGeneratorModel(ref SubstitutionInDocument subDoc, ProgressView progressView)
@@ -33,7 +31,7 @@ namespace DocumentsGenerator.Model
             _subDoc = subDoc;
             _progressView = progressView;
             _progressView.Show();
-
+            
             _replacementTable = new Dictionary<string, string>()
             {
                 {"</CountAuthor>", _subDoc.CountAuthor},
@@ -60,17 +58,7 @@ namespace DocumentsGenerator.Model
                 {"</FullNameTransfer>",_subDoc.FullNameTransfer},
                 {"</FullStringShort>",_subDoc.FullStringShortFioAuthors}
             };
-
-            for (int i = 0; i < int.Parse(_subDoc.CountAuthor); i++)
-            {
-                _replacementTable.Add($"</DateOfBirthAuthors>{i + 1}", _subDoc.DateOfBirthAuthors[i]);
-                _replacementTable.Add($"</FioAuthors>{i + 1}", _subDoc.FioAuthors[i]);
-                _replacementTable.Add($"</ContributionDescriptionAuthors>{i + 1}", _subDoc.ContributionDescriptionAuthors[i]);
-                _replacementTable.Add($"</LocationAuthor>{i + 1}", _subDoc.LocationAuthor[i]);
-                _replacementTable.Add($"</PassportDataAuthor>{i + 1}", _subDoc.PassportDataAuthor[i]);
-                _replacementTable.Add($"</ShortFioAuthors>{i + 1}", _subDoc.ShortFioAuthors[i]);
-            }
-
+            
             _replacementTableSNO = new List<string>
             {
                 "</FioAuthors>",
@@ -87,6 +75,24 @@ namespace DocumentsGenerator.Model
                 "</DateOfBirthAuthors>",
                 "</LocationAuthor>"
             };
+
+            _replacementTableDKZ = new List<string>
+            {
+                "</FioAuthors>",
+                "</DateOfBirthAuthors>",
+                "</ContributionDescriptionAuthors>",
+                "</LocationAuthor>"
+            };
+
+            for (int i = 0; i < int.Parse(_subDoc.CountAuthor); i++)
+            {
+                _replacementTable.Add($"</DateOfBirthAuthors>{i + 1}", _subDoc.DateOfBirthAuthors[i]);
+                _replacementTable.Add($"</FioAuthors>{i + 1}", _subDoc.FioAuthors[i]);
+                _replacementTable.Add($"</ContributionDescriptionAuthors>{i + 1}", _subDoc.ContributionDescriptionAuthors[i]);
+                _replacementTable.Add($"</LocationAuthor>{i + 1}", _subDoc.LocationAuthor[i]);
+                _replacementTable.Add($"</PassportDataAuthor>{i + 1}", _subDoc.PassportDataAuthor[i]);
+                _replacementTable.Add($"</ShortFioAuthors>{i + 1}", _subDoc.ShortFioAuthors[i]);
+            }
         }
         public void CreatJsonFile()
         {
@@ -107,9 +113,6 @@ namespace DocumentsGenerator.Model
         }
         public void CreateAllDocuments()
         {
-            object wrap = WdFindWrap.wdFindContinue;
-            object replace = WdReplace.wdReplaceAll;
-
             string daneName = DateTime.Now.ToString();
             daneName = daneName.Replace(":", "-");
 
@@ -128,9 +131,9 @@ namespace DocumentsGenerator.Model
             else
                 CreatDKZDocument(dirReady);
 
-            //CreatIndividualDocument(dirReference, dirReady, wrap, replace, _fileNameSNOlong, _fileNameSNOshort, _replacementTableSNO);
-           // CreatIndividualDocument(dirReference, dirReady, wrap, replace, _fileNameSOAlong, _fileNameSOAshort, _replacementTableSOA);
-            
+            //CreatIndividualDocument(dirReference, dirReady, _fileNameSNOlong, _fileNameSNOshort, _replacementTableSNO);
+            //CreatIndividualDocument(dirReference, dirReady, _fileNameSOAlong, _fileNameSOAshort, _replacementTableSOA);
+
 
             //foreach (var fileName in Directory.GetFiles(dirReady.FullName))
             //{
@@ -167,8 +170,8 @@ namespace DocumentsGenerator.Model
             //}
             //_progressView.Close();
         }
-        private void CreatIndividualDocument(DirectoryInfo dirReference, DirectoryInfo dirReady, object wrap,
-            object replace, string documentFullName, string documentShortName, List<string> replacementTable)
+        private void CreatIndividualDocument(DirectoryInfo dirReference, DirectoryInfo dirReady,
+             string documentFullName, string documentShortName, List<string> replacementTable)
         {
             foreach (FileInfo file in dirReference.GetFiles())
                 if (file.Name == documentFullName)
@@ -177,12 +180,12 @@ namespace DocumentsGenerator.Model
                         if (i != int.Parse(_subDoc.CountAuthor))
                             file.CopyTo(Path.Combine(dirReady.FullName, $"{documentShortName} ({_subDoc.ShortFioAuthors[i]}).doc"));
 
-                        wordapp = new Word.Application();
-                        wordapp.Documents.Open(Path.Combine(dirReady.FullName, $"{documentShortName} ({_subDoc.ShortFioAuthors[i]}).doc"));
+                        _wordapp = new Word.Application();
+                        _wordapp.Documents.Open(Path.Combine(dirReady.FullName, $"{documentShortName} ({_subDoc.ShortFioAuthors[i]}).doc"));
 
                         foreach (var item in replacementTable)
                         {
-                            Find find = wordapp.Selection.Find;
+                            Find find = _wordapp.Selection.Find;
                             find.Text = item;
                             find.Replacement.Text = item + (i + 1).ToString();
 
@@ -194,131 +197,68 @@ namespace DocumentsGenerator.Model
                                 MatchSoundsLike: Type.Missing,
                                 MatchAllWordForms: false,
                                 Forward: true,
-                                Wrap: wrap,
+                                Wrap: WdFindWrap.wdFindContinue,
                                 Format: false,
                                 ReplaceWith: Type.Missing,
-                                Replace: replace);
+                                Replace: WdReplace.wdReplaceAll);
                         }
-                        wordapp.ActiveDocument.SaveAs2();
-                        wordapp.ActiveDocument.Close();
-                        wordapp.Quit();
+                        _wordapp.ActiveDocument.SaveAs2();
+                        _wordapp.ActiveDocument.Close();
+                        _wordapp.Quit();
                         _progressView.UploadingProgress();
                     }
         }
         private void CreatDKZDocument(DirectoryInfo dirReady)
         {
-            wordapp = new Word.Application();
-            Document worddocument = wordapp.Documents.Open(Path.Combine(dirReady.FullName, _fileNameDKZlong), ReadOnly: false);
-            Table myTable = worddocument.Tables[1];
+            _wordapp = new Word.Application();
+            Document worddocument = _wordapp.Documents.Open(Path.Combine(dirReady.FullName, _fileNameDKZlong), ReadOnly: false);
+            Table tableOne = worddocument.Tables[1];
 
-            for (int i = 0; i < int.Parse(_subDoc.CountAuthor) * 4; i++)
-                myTable.Rows.Add();
+            for (int i = 0; i < (int.Parse(_subDoc.CountAuthor) - 1) * 4; i++)
+                tableOne.Rows.Add();
 
-            int growth = 0;
-            int sequenceNumber = 2;           
-            for (int i = 0; i < int.Parse(_subDoc.CountAuthor); i++)
+            int counter = 0;
+            int prefics = 0;
+            for (int i = 0; i < (int.Parse(_subDoc.CountAuthor) - 1) * 4; i++)
             {
-                Word.Range wordcellrange = myTable.Cell(6 + growth, 1).Range;
-                wordcellrange.Text = $"7А. СВЕДЕНИЯ ОБ АВТОРЕ\nФамилия имя отчество: </FioAuthors>{sequenceNumber}\nДата рождения: </DateOfBirthAuthors>{sequenceNumber}       Гражданство: Российская Федерация\nАвтор согласен с обработкой указанных персональных данных в объеме действий, предусмотренных предоставляемой государственной услугой, и в течение срока действия исключительного права на регистрируемый объект";
-                growth += 4;
-                sequenceNumber++;
+                Word.Range range = tableOne.Cell(6 + counter, 1).Range;
+                range.Copy();
+                tableOne.Rows[6 + counter].Select();
+                range = _wordapp.ActiveDocument.Tables[1].Cell(10 + counter, 1).Range;
+                tableOne.Rows[10 + counter].Range.Paste();
+                counter++;
+
+                if (counter % 4 is 0)
+                    prefics++;
+
+                foreach (var item in _replacementTableDKZ)
+                {
+                    Find find = range.Find;
+                    find.Text = item + (prefics + 2).ToString();
+                    find.Replacement.Text = item + (prefics + 3).ToString();
+
+                    find.Execute(
+                        FindText: Type.Missing,
+                        MatchCase: false,
+                        MatchWholeWord: false,
+                        MatchWildcards: false,
+                        MatchSoundsLike: Type.Missing,
+                        MatchAllWordForms: false,
+                        Forward: false,
+                        Wrap: WdFindWrap.wdFindStop,
+                        Format: false,
+                        ReplaceWith: Type.Missing,
+                        Replace: WdReplace.wdReplaceAll);
+                } 
             }
-            growth = 0;
-            sequenceNumber = 2;
-            for (int i = 0; i < int.Parse(_subDoc.CountAuthor); i++)
-            {
-                Word.Range wordcellrange = myTable.Cell(7 + growth, 1).Range;
-                wordcellrange.Text = $"Место жительства, включая указание страны:\n</LocationAuthor>{sequenceNumber}";
-                growth += 4;
-                sequenceNumber++;
-            }
-            growth = 0;
-            sequenceNumber = 2;
-            for (int i = 0; i < int.Parse(_subDoc.CountAuthor); i++)
-            {
-                Word.Range wordcellrange = myTable.Cell(8 + growth, 1).Range;
-                wordcellrange.Text = $"Краткое описание творческого вклада автора в создание регистрируемой программы для ЭВМ или базы данных:\n</ContributionDescriptionAuthors>{sequenceNumber}";
-                growth += 4;
-                sequenceNumber++;
-            }
-            growth = 0;
-            sequenceNumber = 2;
-            for (int i = 0; i < int.Parse(_subDoc.CountAuthor); i++)
-            {
-                Word.Range wordcellrange = myTable.Cell(9 + growth, 1).Range;
-                wordcellrange.Text = "При публикации сведений о государственной регистрации программы для ЭВМ или базы данных автор согласен:\n(отметить[X])\nупоминать его под своим именем\t\tне упоминать его(анонимно)\nупоминать его под псевдонимом ________________________________________________";
-                growth += 4;
-                sequenceNumber++;
-            }
-            myTable.Rows.Add();
-            Word.Range wordcellrange2 = myTable.Cell(myTable.Rows.Count, 1).Range;
-            wordcellrange2.Text = "ИДИ НАХУЙ";
 
             worddocument.Tables[1].Rows.HeightRule = WdRowHeightRule.wdRowHeightAuto;
             worddocument.Paragraphs[1].Format.LineSpacingRule = (WdLineSpacing)0.5;
 
-            wordapp.ActiveDocument.SaveAs2();
-            wordapp.ActiveDocument.Close();
-            wordapp.Quit();
+            _wordapp.ActiveDocument.SaveAs2();
+            _wordapp.ActiveDocument.Close();
+            _wordapp.Quit();
             _progressView.UploadingProgress();
-        }
-        public static string RemovingSpaces(string originalString)
-        {
-            if (string.IsNullOrEmpty(originalString))
-                return originalString;
-
-            string resultString = originalString;
-            for (int i = 0; i < resultString.Length; i++)
-            {
-                if (resultString[0] == ' ')
-                {
-                    for (int j = 0; j < resultString.Length; j++)
-                    {
-                        if (resultString[j] != ' ')
-                        {
-                            resultString = resultString.Remove(0, j);
-                            i = 0;
-                            break;
-                        }
-                    }
-                }
-                if (resultString[i] == ' ')
-                {
-                    for (int j = i + 1; j < resultString.Length; j++)
-                    {
-                        if (resultString[j] != ' ')
-                        {
-                            resultString = resultString.Remove(i, j - i - 1);
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            while (resultString[resultString.Length - 1] == ' ')
-            {
-                resultString = resultString.Remove(resultString.Length - 1, 1);
-            }
-            return resultString;
-        }
-        public static void CheckingEmptyElement(Control.ControlCollection controlCollectionFORM)
-        {
-            for (int i = 0; i < controlCollectionFORM.Count; i++)
-            {
-                if (controlCollectionFORM[i] is TextBox && controlCollectionFORM[i].Text == string.Empty)
-                    throw new Exception($"Заполните поле \"{controlCollectionFORM[i].AccessibleDescription}\"");
-            }
-        }
-        public static bool NameVerification(string str, int bestCountPoint)
-        {
-            int countSign = default;
-            for (int i = 0; i < str.Length; i++)
-                if (str[i] is '.')
-                    countSign++;
-            if (countSign != bestCountPoint)
-                return false;
-            else
-                return true;
         }
     }
 }

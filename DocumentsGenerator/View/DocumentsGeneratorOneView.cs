@@ -1,7 +1,7 @@
 using DocumentsGenerator.ViewModel;
 using DocumentsGenerator.View;
 using DocumentsGenerator.StructResours;
-using DocumentsGenerator.Model;
+using DocumentsGenerator.WordsWorks;
 
 namespace DocumentsGenerator
 {
@@ -12,6 +12,7 @@ namespace DocumentsGenerator
         private DocumentsGeneratorTwoView? _docView;
         private DocumentsGeneratorMainView? _mv;
         private Dictionary<ErrorProvider, ComboBox> _errorAndField;
+        
         public DocumentsGeneratorOneView(SubstitutionInDocument subDoc, bool selectedJsonFile, bool saveThisFile, bool saveOtherFile)
         {
             InitializeComponent();
@@ -80,7 +81,8 @@ namespace DocumentsGenerator
 
                 try
                 {
-                    DocumentsGeneratorModel.CheckingEmptyElement(MainTableLayoutPanel.Controls);
+                    
+                    WordsWork.CheckingEmptyElement(MainTableLayoutPanel.Controls);
                     if (DateOfDiskTextBox.Text == string.Empty)
                         throw new Exception("Заполните поле \"Занимаемое место на диске\"");
 
@@ -164,7 +166,7 @@ namespace DocumentsGenerator
             {
                 if (string.IsNullOrEmpty(FIOApplicantComboBox.Text))
                     errorProvider3.SetError(FIOApplicantComboBox, "Заполните поле");
-                else if (!DocumentsGeneratorModel.NameVerification(FIOApplicantComboBox.Text, 2))
+                else if (!WordsWork.NameVerification(FIOApplicantComboBox.Text, 2))
                     errorProvider3.SetError(FIOApplicantComboBox, "Неверное заполнено поле \"ФИО подписывающего документы\", формат: Иванов И.И.");
                 else
                     errorProvider3.Clear();
@@ -196,7 +198,7 @@ namespace DocumentsGenerator
             {
                 if (string.IsNullOrEmpty(FIOSigningSeparatelyComboBox.Text))
                     errorProvider6.SetError(FIOSigningSeparatelyComboBox, "Заполните поле");
-                else if (!DocumentsGeneratorModel.NameVerification(FIOSigningSeparatelyComboBox.Text, 1))
+                else if (!WordsWork.NameVerification(FIOSigningSeparatelyComboBox.Text, 1))
                     errorProvider6.SetError(FIOSigningSeparatelyComboBox, "Неверное заполнено поле \"ФИО подписывающего отдельные документы\", формат: И.Иванов");
                 else
                     errorProvider6.Clear();
@@ -206,7 +208,7 @@ namespace DocumentsGenerator
             {
                 if (string.IsNullOrEmpty(FIOAddresseeComboBox.Text))
                     errorProvider7.SetError(FIOAddresseeComboBox, "Заполните поле");
-                else if (!DocumentsGeneratorModel.NameVerification(FIOAddresseeComboBox.Text, 2))
+                else if (!WordsWork.NameVerification(FIOAddresseeComboBox.Text, 2))
                     errorProvider7.SetError(FIOAddresseeComboBox, "Неверное заполнено поле \"ФИО адресата для переписки\", формат: Иванов И.И.");
                 else
                     errorProvider7.Clear();

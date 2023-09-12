@@ -1,5 +1,5 @@
-﻿using DocumentsGenerator.Model;
-using DocumentsGenerator.StructResours;
+﻿using DocumentsGenerator.StructResours;
+using DocumentsGenerator.WordsWorks;
 
 namespace DocumentsGenerator.ViewModel
 {
@@ -9,10 +9,10 @@ namespace DocumentsGenerator.ViewModel
             ComboBox programLanguage, TextBox programSize, ComboBox operatingSystem, ComboBox programSizeComboBox)
         {            
             subDoc.ProgramSize = programSize.Text + " " + programSizeComboBox.Text;
-            subDoc.ProgramAnnotation = DocumentsGeneratorModel.RemovingSpaces(programAnnotation.Text);
-            subDoc.TypeOfComputer = DocumentsGeneratorModel.RemovingSpaces(typeOfСomputer.Text);
-            subDoc.ProgramLanguage = DocumentsGeneratorModel.RemovingSpaces(programLanguage.Text);           
-            subDoc.OperatingSystem = DocumentsGeneratorModel.RemovingSpaces(operatingSystem.Text);
+            subDoc.ProgramAnnotation = WordsWork.RemovingSpaces(programAnnotation.Text);
+            subDoc.TypeOfComputer = WordsWork.RemovingSpaces(typeOfСomputer.Text);
+            subDoc.ProgramLanguage = WordsWork.RemovingSpaces(programLanguage.Text);           
+            subDoc.OperatingSystem = WordsWork.RemovingSpaces(operatingSystem.Text);
         }
     }
 }

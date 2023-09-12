@@ -1,16 +1,16 @@
 ﻿using DocumentsGenerator.Model;
 using DocumentsGenerator.StructResours;
 using DocumentsGenerator.ViewModel;
+using DocumentsGenerator.WordsWorks;
 
 namespace DocumentsGenerator.View
 {
     internal partial class DocumentsGeneratorThreeView : Form
     {
-        private DocumentsGeneratorModel? _model;
+        private Model.DocumentsGeneratorModel? _model;
         private DocumentsGeneratorTwoView? _twoView;
         private DocumentsGeneratorThreeViewModel? _vm;
         private ProgressView _progressView;
-
         public DocumentsGeneratorThreeView(SubstitutionInDocument subDoc, bool selectedJsonFile, bool saveThisFile)
         {
             InitializeComponent();
@@ -51,7 +51,7 @@ namespace DocumentsGenerator.View
             {
                 try
                 {
-                    DocumentsGeneratorModel.CheckingEmptyElement(MainTableLayoutPanel.Controls);
+                    WordsWork.CheckingEmptyElement(MainTableLayoutPanel.Controls);
 
                     if (ProgramSizeTextBox.Text == string.Empty || ProgramSizeComboBox.Text == string.Empty)
                         throw new Exception("Заполните поле \"Объем программы\"");
@@ -89,7 +89,7 @@ namespace DocumentsGenerator.View
                 {
                     try
                     {
-                        DocumentsGeneratorModel.CheckingEmptyElement(NotMainTableLayoutPanel.Controls);
+                        WordsWork.CheckingEmptyElement(NotMainTableLayoutPanel.Controls);
 
                         _vm = new DocumentsGeneratorThreeViewModel(ref subDoc, ProgramAnnotationTextBox,
                                 TypeOfСomputerComboBox, ProgramLanguageComboBox, ProgramSizeTextBox, OperatingSystemComboBox, ProgramSizeComboBox);
