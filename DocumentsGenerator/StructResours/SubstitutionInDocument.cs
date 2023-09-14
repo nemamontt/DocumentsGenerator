@@ -1,5 +1,4 @@
-﻿
-namespace DocumentsGenerator.StructResours
+﻿namespace DocumentsGenerator.StructResours
 {
     public struct SubstitutionInDocument
     {

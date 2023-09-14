@@ -1,6 +1,4 @@
-﻿
-
-namespace DocumentsGenerator.WordsWorks
+﻿namespace DocumentsGenerator.WordsWorks
 {
     internal class WordsWork
     {
@@ -37,7 +35,7 @@ namespace DocumentsGenerator.WordsWorks
                     break;
                 }
             }
-            while (resultString[resultString.Length - 1] == ' ')
+            while (resultString[^1] == ' ')
             {
                 resultString = resultString.Remove(resultString.Length - 1, 1);
             }

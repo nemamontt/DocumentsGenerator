@@ -18,12 +18,12 @@ namespace DocumentsGenerator.Model
         private readonly string _fileNameSOAshort = "_05-1_Сведения об авторе";
         private readonly string _fileNameSOAlong = "_05-1_Сведения об авторе.doc";
         private readonly string _fileNameDKZlong = "_02-1_Дополнение к заявлению (1 оборотный, 1 простой).doc";
-        private Dictionary<string, string> _replacementTable;
-        private List<string> _replacementTableSNO;
-        private List<string> _replacementTableSOA;
-        private List<string> _replacementTableDKZ;
-        private Word.Application _wordapp;
-        private ProgressView _progressView;
+        private readonly Dictionary<string, string> _replacementTable;
+        private readonly List<string> _replacementTableSNO;
+        private readonly List<string> _replacementTableSOA;
+        private readonly List<string> _replacementTableDKZ;
+        private Word.Application? _wordapp;
+        private readonly ProgressView _progressView;
 
         public DocumentsGeneratorModel(ref SubstitutionInDocument subDoc, ProgressView progressView)
         {
@@ -116,8 +116,8 @@ namespace DocumentsGenerator.Model
             string daneName = DateTime.Now.ToString();
             daneName = daneName.Replace(":", "-");
 
-            DirectoryInfo dirReference = new DirectoryInfo(pathReferenceDocuments);
-            DirectoryInfo dirReady = new DirectoryInfo(pathReadyMadeDocuments + " " + daneName);
+            DirectoryInfo dirReference = new(pathReferenceDocuments);
+            DirectoryInfo dirReady = new(pathReadyMadeDocuments + " " + daneName);
             Directory.CreateDirectory(dirReady.ToString());
 
             foreach (FileInfo file in dirReference.GetFiles())
@@ -131,44 +131,43 @@ namespace DocumentsGenerator.Model
             else
                 CreatDKZDocument(dirReady);
 
-            //CreatIndividualDocument(dirReference, dirReady, _fileNameSNOlong, _fileNameSNOshort, _replacementTableSNO);
-            //CreatIndividualDocument(dirReference, dirReady, _fileNameSOAlong, _fileNameSOAshort, _replacementTableSOA);
+            CreatIndividualDocument(dirReference, dirReady, _fileNameSNOlong, _fileNameSNOshort, _replacementTableSNO);
+            CreatIndividualDocument(dirReference, dirReady, _fileNameSOAlong, _fileNameSOAshort, _replacementTableSOA);
 
+            foreach (var fileName in Directory.GetFiles(dirReady.FullName))
+            {
 
-            //foreach (var fileName in Directory.GetFiles(dirReady.FullName))
-            //{
+                if (fileName == Path.Combine(dirReady.FullName, "Лицензия.pdf") || fileName == Path.Combine(dirReady.FullName, "Выписка из реестра.pdf"))
+                    continue;
 
-            //    if (fileName == Path.Combine(dirReady.FullName, "Лицензия.pdf") || fileName == Path.Combine(dirReady.FullName, "Выписка из реестра.pdf"))
-            //        continue;
+                _wordapp = new Word.Application();
+                _wordapp.Documents.Open(Path.Combine(dirReady.FullName, fileName));
 
-            //    wordapp = new Word.Application();
-            //    wordapp.Documents.Open(Path.Combine(dirReady.FullName, fileName));
+                foreach (var item in _replacementTable)
+                {
+                    Find find = _wordapp.Selection.Find;
+                    find.Text = item.Key;
+                    find.Replacement.Text = item.Value;
 
-            //    foreach (var item in _replacementTable)
-            //    {
-            //        Find find = wordapp.Selection.Find;
-            //        find.Text = item.Key;
-            //        find.Replacement.Text = item.Value;
-
-            //        find.Execute(
-            //            FindText: Type.Missing,
-            //            MatchCase: false,
-            //            MatchWholeWord: false,
-            //            MatchWildcards: false,
-            //            MatchSoundsLike: Type.Missing,
-            //            MatchAllWordForms: false,
-            //            Forward: true,
-            //            Wrap: wrap,
-            //            Format: false,
-            //            ReplaceWith: Type.Missing,
-            //            Replace: replace);
-            //    }
-            //    wordapp.ActiveDocument.SaveAs2();
-            //    wordapp.ActiveDocument.Close();
-            //    wordapp.Quit();
-            //    _progressView.UploadingProgress();
-            //}
-            //_progressView.Close();
+                    find.Execute(
+                        FindText: Type.Missing,
+                        MatchCase: false,
+                        MatchWholeWord: false,
+                        MatchWildcards: false,
+                        MatchSoundsLike: Type.Missing,
+                        MatchAllWordForms: false,
+                        Forward: true,
+                        Wrap: WdFindWrap.wdFindStop,
+                        Format: false,
+                        ReplaceWith: Type.Missing,
+                        Replace: WdReplace.wdReplaceAll);
+                }
+                _wordapp.ActiveDocument.SaveAs2();
+                 _wordapp.ActiveDocument.Close();
+                _wordapp.Quit();
+                _progressView.UploadingProgress();
+            }
+            _progressView.Close();
         }
         private void CreatIndividualDocument(DirectoryInfo dirReference, DirectoryInfo dirReady,
              string documentFullName, string documentShortName, List<string> replacementTable)
@@ -221,6 +220,8 @@ namespace DocumentsGenerator.Model
             int prefics = 0;
             for (int i = 0; i < (int.Parse(_subDoc.CountAuthor) - 1) * 4; i++)
             {
+                Thread.Sleep(100);
+                Clipboard.Clear();
                 Word.Range range = tableOne.Cell(6 + counter, 1).Range;
                 range.Copy();
                 tableOne.Rows[6 + counter].Select();
@@ -244,7 +245,7 @@ namespace DocumentsGenerator.Model
                         MatchWildcards: false,
                         MatchSoundsLike: Type.Missing,
                         MatchAllWordForms: false,
-                        Forward: false,
+                        Forward: true,
                         Wrap: WdFindWrap.wdFindStop,
                         Format: false,
                         ReplaceWith: Type.Missing,

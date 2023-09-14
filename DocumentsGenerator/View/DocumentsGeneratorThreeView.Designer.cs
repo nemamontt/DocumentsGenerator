@@ -76,7 +76,6 @@
             MainTableLayoutPanel.Controls.Add(OperatingSystemComboBox, 1, 4);
             MainTableLayoutPanel.Controls.Add(TypeOfСomputerComboBox, 1, 1);
             MainTableLayoutPanel.Controls.Add(NotMainTableLayoutPanel, 1, 3);
-            MainTableLayoutPanel.Cursor = Cursors.Arrow;
             MainTableLayoutPanel.Dock = DockStyle.Fill;
             MainTableLayoutPanel.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             MainTableLayoutPanel.Location = new Point(0, 0);
@@ -140,7 +139,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Cascadia Mono", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(3, 261);
+            label2.Location = new Point(3, 263);
             label2.Name = "label2";
             label2.Size = new Size(72, 17);
             label2.TabIndex = 1;
@@ -178,7 +177,7 @@
             ProgramAnnotationTextBox.Location = new Point(243, 3);
             ProgramAnnotationTextBox.Multiline = true;
             ProgramAnnotationTextBox.Name = "ProgramAnnotationTextBox";
-            ProgramAnnotationTextBox.Size = new Size(554, 255);
+            ProgramAnnotationTextBox.Size = new Size(554, 257);
             ProgramAnnotationTextBox.TabIndex = 1;
             ProgramAnnotationTextBox.Tag = "1";
             // 
@@ -210,7 +209,7 @@
             TypeOfСomputerComboBox.Cursor = Cursors.IBeam;
             TypeOfСomputerComboBox.FormattingEnabled = true;
             TypeOfСomputerComboBox.Items.AddRange(new object[] { "IBM PC-совмест. ПК", "IBM PC - совмест. ПК на базе процессора Intel Pentium", "IBM на базе процессора Intel Pentium IV и выше", "IBM РС-совмест. ПК на базе процессора Intel Pentium III и выше", "IBM РС - совмест. ПК или сервер на базе процессора с архитектурой х86-64" });
-            TypeOfСomputerComboBox.Location = new Point(243, 264);
+            TypeOfСomputerComboBox.Location = new Point(243, 266);
             TypeOfСomputerComboBox.Name = "TypeOfСomputerComboBox";
             TypeOfСomputerComboBox.Size = new Size(306, 25);
             TypeOfСomputerComboBox.TabIndex = 2;
@@ -234,7 +233,7 @@
             ProgramSizeTextBox.AccessibleDescription = "Объем программы";
             ProgramSizeTextBox.Cursor = Cursors.IBeam;
             ProgramSizeTextBox.Location = new Point(3, 3);
-            ProgramSizeTextBox.MaxLength = 4;
+            ProgramSizeTextBox.MaxLength = 6;
             ProgramSizeTextBox.Name = "ProgramSizeTextBox";
             ProgramSizeTextBox.PlaceholderText = "15,5";
             ProgramSizeTextBox.Size = new Size(100, 23);

@@ -348,15 +348,15 @@
             // NotMainTableLayoutPanel
             // 
             NotMainTableLayoutPanel.ColumnCount = 2;
-            NotMainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-            NotMainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            NotMainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle());
+            NotMainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle());
             NotMainTableLayoutPanel.Controls.Add(DateOfDiskTextBox, 0, 0);
             NotMainTableLayoutPanel.Controls.Add(DateOfDiskComboBox, 1, 0);
             NotMainTableLayoutPanel.Location = new Point(225, 297);
             NotMainTableLayoutPanel.Name = "NotMainTableLayoutPanel";
             NotMainTableLayoutPanel.RowCount = 1;
             NotMainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            NotMainTableLayoutPanel.Size = new Size(190, 30);
+            NotMainTableLayoutPanel.Size = new Size(152, 30);
             NotMainTableLayoutPanel.TabIndex = 8;
             // 
             // DateOfDiskTextBox
@@ -364,9 +364,9 @@
             DateOfDiskTextBox.BackColor = SystemColors.Window;
             DateOfDiskTextBox.Cursor = Cursors.IBeam;
             DateOfDiskTextBox.Location = new Point(3, 3);
-            DateOfDiskTextBox.MaxLength = 4;
+            DateOfDiskTextBox.MaxLength = 6;
             DateOfDiskTextBox.Name = "DateOfDiskTextBox";
-            DateOfDiskTextBox.PlaceholderText = "Например: 120";
+            DateOfDiskTextBox.PlaceholderText = "12.3";
             DateOfDiskTextBox.Size = new Size(93, 23);
             DateOfDiskTextBox.TabIndex = 4;
             // 
@@ -377,7 +377,7 @@
             DateOfDiskComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             DateOfDiskComboBox.FormattingEnabled = true;
             DateOfDiskComboBox.Items.AddRange(new object[] { "КБ", "МБ", "ГБ" });
-            DateOfDiskComboBox.Location = new Point(117, 3);
+            DateOfDiskComboBox.Location = new Point(102, 3);
             DateOfDiskComboBox.Name = "DateOfDiskComboBox";
             DateOfDiskComboBox.Size = new Size(50, 25);
             DateOfDiskComboBox.TabIndex = 5;

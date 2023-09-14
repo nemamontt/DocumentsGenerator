@@ -11,8 +11,8 @@ namespace DocumentsGenerator
         private DocumentsGeneratorOneViewModel? _vm;
         private DocumentsGeneratorTwoView? _docView;
         private DocumentsGeneratorMainView? _mv;
-        private Dictionary<ErrorProvider, ComboBox> _errorAndField;
-        
+        private readonly Dictionary<ErrorProvider, ComboBox> _errorAndField;
+
         public DocumentsGeneratorOneView(SubstitutionInDocument subDoc, bool selectedJsonFile, bool saveThisFile, bool saveOtherFile)
         {
             InitializeComponent();
@@ -81,7 +81,6 @@ namespace DocumentsGenerator
 
                 try
                 {
-                    
                     WordsWork.CheckingEmptyElement(MainTableLayoutPanel.Controls);
                     if (DateOfDiskTextBox.Text == string.Empty)
                         throw new Exception("Заполните поле \"Занимаемое место на диске\"");
@@ -176,12 +175,6 @@ namespace DocumentsGenerator
             {
                 errorProvider4.Clear();
 
-                for (int i = 0; i < DateOfDiskTextBox.Text.Length; i++)
-                    if (!char.IsNumber(DateOfDiskTextBox.Text[i]) || DateOfDiskTextBox.Text[i] is ' ')
-                    {
-                        errorProvider4.SetError(DateOfDiskTextBox, "Неверно указан объем программы");
-                        return;
-                    }
                 if (string.IsNullOrEmpty(DateOfDiskTextBox.Text))
                     errorProvider4.SetError(DateOfDiskTextBox, "Заполните поле");
             };
@@ -234,6 +227,19 @@ namespace DocumentsGenerator
             {
                 var rectangle = e.CellBounds;
                 ControlPaint.DrawBorder(e.Graphics, rectangle, Color.DarkSlateGray, ButtonBorderStyle.Solid);
+            };
+
+            DateOfDiskTextBox.KeyPress += (s, e) =>
+            {
+                errorProvider4.Clear();
+                if (e.KeyChar is ' ')
+                {
+                    e.Handled = true;
+                    errorProvider4.SetError(DateOfDiskTextBox, "Неверно указан объем программы");
+                }
+
+                if (e.KeyChar is not (char)Keys.Back && e.KeyChar is not '.' && !char.IsNumber(e.KeyChar))
+                    e.Handled = true;
             };
         }
     }

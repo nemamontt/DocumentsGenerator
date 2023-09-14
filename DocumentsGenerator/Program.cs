@@ -7,9 +7,9 @@ namespace DocumentsGenerator
     {
         [STAThread]       
         static void Main()
-        {           
-            ApplicationConfiguration.Initialize();
-            SubstitutionInDocument subDoc = new SubstitutionInDocument();
+        {
+            SubstitutionInDocument subDoc = new();
+            ApplicationConfiguration.Initialize();           
             Application.Run(new DocumentsGeneratorMainView(subDoc, false, false, false));
         }
     }

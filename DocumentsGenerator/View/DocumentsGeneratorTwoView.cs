@@ -9,7 +9,7 @@ namespace DocumentsGenerator.View
         private DocumentsGeneratorOneView? _oneView;
         private DocumentsGeneratorThreeView? _threeView;
         private DocumentsGeneratorTwoViewModel? _vm;
-        private Dictionary<ErrorProvider, TextBox> _errorAndField;
+        private readonly Dictionary<ErrorProvider, TextBox> _errorAndField;
         private int _textBoxActive = default;
         public DocumentsGeneratorTwoView(SubstitutionInDocument subDoc, bool selectedJsonFile, bool saveOtherFile, bool saveThisFile)
         {
@@ -112,7 +112,7 @@ namespace DocumentsGenerator.View
             SeparatorButton.Click += (s, e) =>
             {
                 foreach (var item in _errorAndField)
-                    if (item.Value.TabIndex == _textBoxActive && item.Value.Text is not "" && item.Value.Text[item.Value.Text.Length - 1] is not '|')
+                    if (item.Value.TabIndex == _textBoxActive && item.Value.Text is not "" && item.Value.Text[^1] is not '|')
                         item.Value.Text += "|";
             };
 
@@ -196,13 +196,13 @@ namespace DocumentsGenerator.View
             {
                 item.Value.KeyPress += (sender, e) =>
                 {
-                    if (item.Value.Text is not "" && item.Value.Text[item.Value.Text.Length - 1] is '|' && e.KeyChar is '|')
+                    if (item.Value.Text is not "" && item.Value.Text[^1] is '|' && e.KeyChar is '|')
                         e.Handled = true;
-                    if (item.Value.Text is not "" && item.Value.Text[item.Value.Text.Length - 1] is '.' && e.KeyChar is '.')
+                    if (item.Value.Text is not "" && item.Value.Text[^1] is '.' && e.KeyChar is '.')
                         e.Handled = true;
-                    if (item.Value.Text is not "" && item.Value.Text[item.Value.Text.Length - 1] is ',' && e.KeyChar is ',')
+                    if (item.Value.Text is not "" && item.Value.Text[^1] is ',' && e.KeyChar is ',')
                         e.Handled = true;
-                    if (item.Value.Text is not "" && item.Value.Text[item.Value.Text.Length - 1] is '|' && e.KeyChar is ' ')
+                    if (item.Value.Text is not "" && item.Value.Text[^1] is '|' && e.KeyChar is ' ')
                         e.Handled = true;
                         
                 };
@@ -222,7 +222,7 @@ namespace DocumentsGenerator.View
                     e.Handled = true;
             };
         }
-        private void DetectValidCharacter(ErrorProvider errorProvider, TextBox textBox)
+        private static void DetectValidCharacter(ErrorProvider errorProvider, TextBox textBox)
         {
             for (int i = 0; i < textBox.Text.Length; i++)
             {
@@ -232,7 +232,7 @@ namespace DocumentsGenerator.View
                     errorProvider.SetError(textBox, "Введен недопустимый символ");
             }
         }
-        private void DetectSeparator(ErrorProvider errorProvider, TextBox textBox, int countAuthor)
+        private static void DetectSeparator(ErrorProvider errorProvider, TextBox textBox, int countAuthor)
         {
             int counter = 0;
             for (int i = 0; i < textBox.Text.Length; i++)

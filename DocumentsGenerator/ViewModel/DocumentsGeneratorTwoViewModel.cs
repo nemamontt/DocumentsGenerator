@@ -5,7 +5,7 @@ namespace DocumentsGenerator.ViewModel
 {
     internal class DocumentsGeneratorTwoViewModel
     {
-        private List<TextBox> _textBoxs;
+        private readonly List<TextBox> _textBoxs;
         public DocumentsGeneratorTwoViewModel(ref SubstitutionInDocument subDoc, TextBox fioOtherAuthorTextBox, TextBox dateOfBirthOtherAuthorsTextBox, 
             TextBox locationOtherAuthorTextBox, TextBox creativeInputOtherAuthorTextBox, TextBox passportDetailsTextBox)
         {                            

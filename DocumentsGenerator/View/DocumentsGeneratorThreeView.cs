@@ -7,10 +7,10 @@ namespace DocumentsGenerator.View
 {
     internal partial class DocumentsGeneratorThreeView : Form
     {
-        private Model.DocumentsGeneratorModel? _model;
+        private DocumentsGeneratorModel? _model;
         private DocumentsGeneratorTwoView? _twoView;
         private DocumentsGeneratorThreeViewModel? _vm;
-        private ProgressView _progressView;
+        private readonly ProgressView _progressView;
         public DocumentsGeneratorThreeView(SubstitutionInDocument subDoc, bool selectedJsonFile, bool saveThisFile)
         {
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace DocumentsGenerator.View
             new ToolTip().SetToolTip(ProgramAnnotationTextBox, "Образец заполения этого поля находиться в инструкции");
             new ToolTip().SetToolTip(TypeOfСomputerComboBox, "Введите в этом поле тип ЭВМ для которого написана программа,\nнаример: IBM на базе процессора Intel Pentium IV и выше");
             new ToolTip().SetToolTip(ProgramLanguageComboBox, "Введите или выберите в этом поле язык программирования на котором написана программа, например: C#");
-            new ToolTip().SetToolTip(ProgramSizeTextBox, "Введите объем вашей программы,\nнапример: 14,2 МБ");
+            new ToolTip().SetToolTip(ProgramSizeTextBox, "Введите объем вашей программы,\nнапример: 14.2 МБ");
             new ToolTip().SetToolTip(OperatingSystemComboBox, "Введите или выберите в этом поле ОС для которой написанна программа,\nнаример: Windows ХР и выше");
             ProgramAnnotationTextBox.PlaceholderText = "Образец заполнения этого поля находиться в инструкции,\nОБЯЗАТЕЛЬНО ознакомьтесь";
 
@@ -77,6 +77,7 @@ namespace DocumentsGenerator.View
                 }
                 catch (Exception ex)
                 {
+                    _progressView.Close();
                     MessageBox.Show(ex.Message, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             };
